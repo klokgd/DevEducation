@@ -15,9 +15,11 @@ namespace HomeWork1
         {
             string a = GetTextFromUser("Введите текст А: ");
             string b = GetTextFromUser("Введите текст В: ");
-            string mix1 = MixVariables(a, b);
-            string mix2 = MixVariables(b, a);
-            Console.WriteLine("Теперь A - " + mix1 + ", а B - это " + mix2);
+            
+            string mix = b;
+            b = MixVariables(b, a);
+            a = MixVariables(a, mix);
+            Console.WriteLine("Теперь A - " + a + ", а B - это " + b);
 
         }
         public void SolveTask3()
@@ -50,56 +52,66 @@ namespace HomeWork1
 
 
 
-        private int GetNumberFromUser(string message)
+        public int GetNumberFromUser(string message)
         {
             Console.WriteLine(message);
             int number = Convert.ToInt32(Console.ReadLine());
             return number;
         }
-        private string GetTextFromUser(string message)
+        public string GetTextFromUser(string message)
         {
             Console.WriteLine(message);
             string text = Console.ReadLine();
             return text;
         }
 
-        private double CalcFormula(int a, int b)
+        public double CalcFormula(int a, int b)
         {
+            if (a == b)
+            {
+                throw new ArgumentException("Значения А и В должны быть разными");
+            }
             double calculationResult = ((5 * a) + Math.Pow(b, 2)) / (b - a);
             return calculationResult;
         }
 
-        private double DivideTheNumbers(int a, int b)
+        public double DivideTheNumbers(int a, int b)
         {
             double calculationResult = a / b;
             return calculationResult;
         }
-        private double GetTheRemainderOfTheDivision(int a, int b)
+        public double GetTheRemainderOfTheDivision(int a, int b)
         {
             double calculationResult = a % b;
             return calculationResult;
         }
-        private double FindXOfTheLinearEquation(int a, int b, int c)
+        public double FindXOfTheLinearEquation(int a, int b, int c)
         {
             double x = (c - b) / a;
             return x;
         }
-        private double FindAInTheStraightLineFormula(int x1, int y1, int x2, int y2)
+        public double FindAInTheStraightLineFormula(int x1, int y1, int x2, int y2)
         {
+            if (x1 == x2)
+            {
+                throw new ArgumentException("Значения X1 и X2 должны быть разными");
+            }
             double a = (y1 - y2) / (x1 - x2);
             return a;
         }
-        private double FindBInTheStraightLineFormula(int x2, int y2, double a)
+        public double FindBInTheStraightLineFormula(int x2, int y2, double a)
         {
             double b = y2 - a * x2;
             return b;
         }
 
-        private string MixVariables(string a, string b)
+        public string MixVariables(string a, string b)
         {
+
             a = b;
             return a;
         }
+        
 
 
     }
