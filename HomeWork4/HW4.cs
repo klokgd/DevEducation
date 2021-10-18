@@ -177,7 +177,6 @@ namespace HomeWork4
         }
         private int[] FlipArray(int[] array)
         {
-            int startArray = 0;
             int endArray = array.Length - 1;
             int temp = 0;
             int halfArray = array.Length / 2;

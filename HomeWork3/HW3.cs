@@ -86,8 +86,11 @@ namespace HomeWork3
         public void SolveTask11()
         {
             int a = GetNumberFromUser("Введите ваше число: ");
-            int result = DisplaySeriesNumbersSumOddMore(a);
-            Console.WriteLine(result);
+            int[] result = DisplaySeriesNumbersSumOddMore(a);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
 
         }
         public void SolveTask12()
@@ -99,14 +102,14 @@ namespace HomeWork3
 
 
         }
-        private int GetNumberFromUser(string message)
+        public int GetNumberFromUser(string message)
         {
             Console.WriteLine(message);
             int number = Convert.ToInt32(Console.ReadLine());
             return number;
         }
 
-        private int Exponentiation(int a, int b)
+        public int Exponentiation(int a, int b)
         {
             int intermediate;
             int result = a;
@@ -120,7 +123,7 @@ namespace HomeWork3
             return result;
 
         }
-        private int[] PrintNumbersThatAreDivisibleByANumber(int a)
+        public int[] PrintNumbersThatAreDivisibleByANumber(int a)
         {
             int length = 0;
             for (int index = 0; index <= 1000; index++)
@@ -150,7 +153,7 @@ namespace HomeWork3
             return result;
         }
 
-        private int FindNumbersLessThanSquared(int a)
+        public int FindNumbersLessThanSquared(int a)
         {
             int result = 0;
             for (int index = 1; index < a; index++)
@@ -165,7 +168,7 @@ namespace HomeWork3
             return result;
         }
 
-        private int FindTheGreatestDivisor(int a)
+        public int FindTheGreatestDivisor(int a)
         {
             int result = 0;
             for (int index = a - 1; index > 0; index--)
@@ -180,7 +183,7 @@ namespace HomeWork3
             return result;
         }
 
-        private int FindNumbersDivisibleBy7(int a, int b)
+        public int FindNumbersDivisibleBy7(int a, int b)
         {
             int equal = 0;
 
@@ -191,8 +194,7 @@ namespace HomeWork3
                     if (i % 7 == 0)
                     {
                         equal += i;
-                        Console.WriteLine($"Число, которое делится без остатка: {i}");
-                        Console.WriteLine($"Сумма на данный момент: {equal}");
+
                     }
                 }
             }
@@ -203,8 +205,7 @@ namespace HomeWork3
                     if (i % 7 == 0)
                     {
                         equal += i;
-                        Console.WriteLine($"Число, которое делится без остатка: {i}");
-                        Console.WriteLine($"Сумма на данный момент: {equal}");
+
                     }
                 }
             }
@@ -212,7 +213,7 @@ namespace HomeWork3
             return equal;
         }
 
-        private int[] PrintASeriesOfFibonacciNumbers(int a)
+        public int[] PrintASeriesOfFibonacciNumbers(int a)
         {
             int y = 1;
             int x = 1;
@@ -232,7 +233,7 @@ namespace HomeWork3
 
         }
 
-        private int LookingForACommonDivisorOfTwoNumbers(int a, int b)
+        public int LookingForACommonDivisorOfTwoNumbers(int a, int b)
         {
             int temperlate = 1;
             int tempA = a;
@@ -253,6 +254,14 @@ namespace HomeWork3
                     tempA = tempB;
                     tempB = temperlate;
                     temperlate = tempA % tempB;
+
+                    if (temperlate == 0)
+                    {
+                        result = tempB;
+                        break;
+                    }
+
+
 
                     if ((a % temperlate == 0) && (b % temperlate == 0))
                     {
@@ -283,7 +292,7 @@ namespace HomeWork3
             return result;
         }
 
-        private int SearchNumberCube(int a)
+        public int SearchNumberCube(int a)
         {
             int right = a;
             int left = 0;
@@ -311,7 +320,7 @@ namespace HomeWork3
             return mid;
         }
 
-        private int FindTheNumberOfOddDigitsInANumber(int a)
+        public int FindTheNumberOfOddDigitsInANumber(int a)
         {
             int numberOdd = 0;
             int testNumber = a;
@@ -328,7 +337,7 @@ namespace HomeWork3
             return numberOdd;
         }
 
-        private int FlipTheNumber(int a)
+        public int FlipTheNumber(int a)
         {
             int reverse = 0;
             int reverseTemp = 0;
@@ -343,19 +352,20 @@ namespace HomeWork3
             return reverse;
         }
 
-        private int DisplaySeriesNumbersSumOddMore(int a)
+        public int[] DisplaySeriesNumbersSumOddMore(int a)
         {
             int sumEven = 0;
             int sumOdd = 0;
             int temperlate = 0;
             int temperlate2 = 0;
+            int length = 0;
             for (int i = 1; i <= a; i++)
             {
                 if (i < 10)
                 {
                     if (i % 2 == 0)
                     {
-                        Console.WriteLine(i);
+                        length++;
 
                     }
 
@@ -375,29 +385,83 @@ namespace HomeWork3
                         {
                             sumOdd = sumOdd + temperlate;
                         }
-                        temperlate2 = temperlate2 / 10; //я явно что-то усложнил в этой задаче
+                        temperlate2 = temperlate2 / 10;
 
 
                     }
                     if (sumEven > sumOdd)
                     {
-                        Console.WriteLine(i);
                         sumEven = 0;
                         sumOdd = 0;
+                        length++;
                     }
                     else
                     {
                         sumEven = 0;
                         sumOdd = 0;
+
                     }
 
 
                 }
             }
-            return sumEven;
+            int[] result = new int[length];
+            int index = 0;
+
+            for (int i = 1; i <= a; i++)
+            {
+                if (i < 10)
+                {
+                    if (i % 2 == 0)
+                    {
+                        result[index] = i;
+                        index++;
+                    }
+
+                }
+                else
+                {
+                    temperlate2 = i;
+                    while (temperlate2 != 0)
+                    {
+                        temperlate = temperlate2 % 10;
+
+                        if (temperlate % 2 == 0)
+                        {
+                            sumEven = sumEven + temperlate;
+                        }
+                        else
+                        {
+                            sumOdd = sumOdd + temperlate;
+                        }
+                        temperlate2 = temperlate2 / 10;
+
+
+                    }
+                    if (sumEven > sumOdd)
+                    {
+                        sumEven = 0;
+                        sumOdd = 0;
+                        result[index] = i;
+                        index++;
+
+                    }
+                    else
+                    {
+                        sumEven = 0;
+                        sumOdd = 0;
+
+                    }
+
+
+                }
+
+            }
+
+            return result;
         }
 
-        private string FindIdenticalNumbersInAPair(int a, int b)
+        public string FindIdenticalNumbersInAPair(int a, int b)
         {
             int partA;
             int partB;
@@ -420,6 +484,10 @@ namespace HomeWork3
                 }
 
 
+            }
+            if (result == "")
+            {
+                result = "НЕТ";
             }
             return result;
         }
