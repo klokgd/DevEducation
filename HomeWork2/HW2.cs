@@ -23,6 +23,7 @@ namespace HomeWork2
             int a = GetNumberFromUser("Введите число А:  ");
             int b = GetNumberFromUser("Введите число B:  ");
             int c = GetNumberFromUser("Введите число C:  ");
+            //int juniorNumber = FindJuniorNumber(a, b, c);
             string result = PutNumbersInAscendingOrder(a, b, c);
             Console.WriteLine(result);
         }
@@ -43,19 +44,19 @@ namespace HomeWork2
             int a = GetNumberFromUser("Введите ваше число:  ");
             string result = TranslateTheNumberIntoText(a);
             Console.WriteLine(result);
-            
+
 
         }
-        
 
-        private int GetNumberFromUser(string message)
+
+        public int GetNumberFromUser(string message)
         {
             Console.WriteLine(message);
             int number = Convert.ToInt32(Console.ReadLine());
             return number;
         }
 
-        private int CountTheNumbersAfterTheConditions(int a, int b)
+        public int CountTheNumbersAfterTheConditions(int a, int b)
         {
             int result = 0;
             if (a > b)
@@ -74,7 +75,7 @@ namespace HomeWork2
 
         }
 
-        private string FindTheCoordinateQuarter(int x, int y)
+        public string FindTheCoordinateQuarter(int x, int y)
         {
             string result = "";
 
@@ -106,7 +107,44 @@ namespace HomeWork2
             return result;
         }
 
-        private string PutNumbersInAscendingOrder(int a, int b, int c)
+        public int FindSeniorNumber(int a, int b, int c)
+        {
+            int result = 0;
+            if ((a > b) & (a > c))
+            {
+                result = a;
+            } else if (b > c)
+            {
+                result = b;
+            } else
+            {
+                result = c;
+            }
+            return result;
+        }
+        public int FindJuniorNumber(int a, int b, int c)
+        {
+            int result = 0;
+            if ((a < b) & (a < c))
+            {
+                result = a;
+            } else if (b < c)
+            {
+                result = b;
+            } else
+            {
+                result = c;
+            }
+            return result;
+        }
+        public int FindMiddleNumber(int a, int b)
+        {
+            int result = 0;
+            //int juniorNumber = FindJuniorNumber(a, b);
+            return result;
+        }
+
+        public string PutNumbersInAscendingOrder(int a, int b, int c)
         {
             int seniorNumber;
             int middleNumber;
@@ -158,7 +196,7 @@ namespace HomeWork2
             return result;
         }
 
-        private double[] FindTheRootsOfTheQuadraticEquation(double a, double b, double c)
+        public double[] FindTheRootsOfTheQuadraticEquation(double a, double b, double c)
         {
             double d, x1, x2;
 
@@ -188,7 +226,7 @@ namespace HomeWork2
 
         }
 
-        private string TranslateTheNumberIntoText(int twoDigitNumber)
+        public string TranslateTheNumberIntoText(int twoDigitNumber)
         {
             string tenNumberToLetter, oneNumberToLetter;
 
@@ -230,7 +268,8 @@ namespace HomeWork2
                             tenNumberToLetter = "Десять";
                             break;
                     }
-                    return tenNumberToLetter;
+                    string result = $"Текст в число:\n{tenNumberToLetter}";
+                    return result;
 
                 }
                 else

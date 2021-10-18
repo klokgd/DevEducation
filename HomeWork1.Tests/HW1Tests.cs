@@ -15,104 +15,104 @@ namespace HomeWork1.Tests
         [Test]
         public void CalcFormulaTest()
         {
-            // подготовка
+            // arrange
             int a = 5;
             int b = -5;
             double expected = -5;
 
-            // действие
+            // act
             double actual = _hw1.CalcFormula(a, b);
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         }
         [Test]
         public void MixVariablesTest()
         {
-            // подготовка
+            // arrange
             string a = "parampampam";
             string b = "чевапчичи";
             string expected = "чевапчичи";
 
-            // действие
+            // act
             string actual = _hw1.MixVariables(a, b);
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         }
         [Test]
         public void DivideTheNumbersTest()
         {
-            // подготовка
+            // arrange
             int a = 10;
             int b = 5;
             double expected = 2;
 
-            // действие
+            // act
             double actual = _hw1.DivideTheNumbers(a, b);
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         }
         [Test]
         public void GetTheRemainderOfTheDivisionTest()
         {
-            // подготовка
+            // arrange
             int a = 10;
             int b = 5;
             double expected = 0;
 
-            // действие
+            // act
             double actual = _hw1.GetTheRemainderOfTheDivision(a, b);
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         } 
         [Test]
         public void FindXOfTheLinearEquationTest()
         {
-            // подготовка
+            // arrange
             int a = 2;
             int b = 5;
             int c = 15;
             double expected = 5;
 
-            // действие
+            // act
             double actual = _hw1.FindXOfTheLinearEquation(a, b, c);
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         }
         [Test]
         public void FindAInTheStraightLineFormula()
         {
-            // подготовка
+            // arrange
             int x1 = 10;
             int y1 = 15;
             int x2 = 5;
             int y2 = 5;
             double expected = 2;
 
-            // действие
+            // act
             double actual = _hw1.FindAInTheStraightLineFormula(x1, y1, x2, y2); 
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         } 
         [Test]
         public void FindBInTheStraightLineFormula()
         {
-            // подготовка
+            // arrange
           
             int x2 = 5;
             int y2 = 5;
             double a = 2;
             double expected = -5;
 
-            // действие
+            // act
             double actual = _hw1.FindBInTheStraightLineFormula(x2, y2, a);
 
-            // проверка
+            // assert
             Assert.AreEqual(expected, actual);
         }
     }

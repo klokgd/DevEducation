@@ -39,10 +39,8 @@ namespace HomeWork4
         {
             int[] array = AddRandomInArray(20);
             int[] result = FlipArray(array);
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
         }
         public void SolveTask7()
         {
@@ -55,54 +53,47 @@ namespace HomeWork4
             int[] array = AddRandomInArray(20);
             int[] result = SwapParts(array);
             Console.WriteLine("Изменили части массива:");
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
         }
         public void SolveTask9()
         {
             int[] array = AddRandomInArray(20);
 
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             int[] result = BubbleSort(array);
 
             Console.WriteLine("Отсортировали:");
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
         }
         public void SolveTask10()
         {
             int[] array = AddRandomInArray(20);
 
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             int[] result = InsertSort(array);
 
             Console.WriteLine("Отсортировали в порядке убывания:");
+            DisplayArray(array);
+
+        }
+        public void DisplayArray(int[] array)
+        {
             foreach (var item in array)
             {
                 Console.Write($"{item} \t");
             }
         }
-
         private int FindTheMinimumNumberInAnArray(int[] array)
         {
             int min = array[1];
 
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
 
             Console.WriteLine();
 
@@ -119,10 +110,8 @@ namespace HomeWork4
         {
             int max = array[1];
 
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             Console.WriteLine();
 
@@ -139,10 +128,8 @@ namespace HomeWork4
         {
             int min = array[0];
             int minIn = 0;
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             Console.WriteLine();
 
@@ -159,10 +146,8 @@ namespace HomeWork4
         {
             int max = array[0];
             int maxIn = 0;
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             Console.WriteLine();
             for (int index = 0; index < array.Length; index++)
@@ -177,10 +162,8 @@ namespace HomeWork4
         private int CalculateTheSumOddIndices(int[] array)
         {
             int oddIn = 0;
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             for (int index = 0; index < array.Length; index++)
             {
@@ -198,10 +181,8 @@ namespace HomeWork4
             int endArray = array.Length - 1;
             int temp = 0;
             int halfArray = array.Length / 2;
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
             Console.WriteLine("Перевернутый массив: ");
             for (int index = 0; index < halfArray; index++)
             {
@@ -230,10 +211,8 @@ namespace HomeWork4
         {
             int oddEq = 0;
 
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             for (int index = 0; index < array.Length; index++)
             {
@@ -249,10 +228,8 @@ namespace HomeWork4
         private int[] SwapParts(int[] array)
         {
 
-            foreach (var item in array)
-            {
-                Console.Write($"{item} \t");
-            }
+            DisplayArray(array);
+
 
             int half = array.Length / 2;
             int n = array.Length % 2;

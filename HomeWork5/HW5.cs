@@ -66,6 +66,8 @@ namespace HomeWork5
 
         }
 
+       
+
         private int FindTheMinimumNumberInAnArray(int[,] array)
         {
             int min = array[0, 0];
