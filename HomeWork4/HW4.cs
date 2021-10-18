@@ -44,7 +44,7 @@ namespace HomeWork4
         }
         public void SolveTask7()
         {
-            int[] array = AddRandomInArray(20);
+            int[] array = AddRandomInArray(3);
             int result = CountTheNumberOfOddElements(array);
             Console.WriteLine($"Количество нечетных элементов в массиве: {result}");
         }
@@ -89,7 +89,7 @@ namespace HomeWork4
                 Console.Write($"{item} \t");
             }
         }
-        private int FindTheMinimumNumberInAnArray(int[] array)
+        public int FindTheMinimumNumberInAnArray(int[] array)
         {
             int min = array[1];
 
@@ -106,7 +106,7 @@ namespace HomeWork4
             }
             return min;
         }
-        private int FindTheMaximumNumberInAnArray(int[] array)
+        public int FindTheMaximumNumberInAnArray(int[] array)
         {
             int max = array[1];
 
@@ -124,7 +124,7 @@ namespace HomeWork4
             }
             return max;
         }
-        private int FindTheMinimumIndexInAnArray(int[] array)
+        public int FindTheMinimumIndexInAnArray(int[] array)
         {
             int min = array[0];
             int minIn = 0;
@@ -138,11 +138,12 @@ namespace HomeWork4
                 if (array[index] < min)
                 {
                     minIn = index;
+                    min = array[index];
                 }
             }
             return minIn;
         }
-        private int FindTheMaximumIndexInAnArray(int[] array)
+        public int FindTheMaximumIndexInAnArray(int[] array)
         {
             int max = array[0];
             int maxIn = 0;
@@ -155,11 +156,12 @@ namespace HomeWork4
                 if (array[index] > max)
                 {
                     maxIn = index;
+                    max = array[index];
                 }
             }
             return maxIn;
         }
-        private int CalculateTheSumOddIndices(int[] array)
+        public int CalculateTheSumOddIndices(int[] array)
         {
             int oddIn = 0;
             DisplayArray(array);
@@ -175,7 +177,7 @@ namespace HomeWork4
             }
             return oddIn;
         }
-        private int[] FlipArray(int[] array)
+        public int[] FlipArray(int[] array)
         {
             int endArray = array.Length - 1;
             int temp = 0;
@@ -193,7 +195,7 @@ namespace HomeWork4
             return array;
         }
 
-        private int[] AddRandomInArray(int a)
+        public int[] AddRandomInArray(int a)
         {
             Random rnd = new Random();
 
@@ -205,7 +207,7 @@ namespace HomeWork4
             return array;
         }
 
-        private int CountTheNumberOfOddElements(int[] array)
+        public int CountTheNumberOfOddElements(int[] array)
 
         {
             int oddEq = 0;
@@ -217,6 +219,7 @@ namespace HomeWork4
             {
                 if (array[index] % 2 != 0)
                 {
+                    
                     oddEq += 1;
                 }
 
@@ -224,7 +227,7 @@ namespace HomeWork4
             return oddEq;
         }
 
-        private int[] SwapParts(int[] array)
+        public int[] SwapParts(int[] array)
         {
 
             DisplayArray(array);
@@ -244,7 +247,7 @@ namespace HomeWork4
             return array;
         }
 
-        private int[] BubbleSort(int[] array)
+        public int[] BubbleSort(int[] array)
         {
             bool test = true;
             int n = 0;
@@ -268,7 +271,7 @@ namespace HomeWork4
             }
             return array;
         }
-        private int[] InsertSort(int[] array)
+        public int[] InsertSort(int[] array)
         {
             int max = 0;
             int endAr = array.Length - 1;
