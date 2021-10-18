@@ -13,7 +13,7 @@ namespace HomeWork1.Tests
         }
 
         [Test]
-        public void CalcFormulaTest()
+        public void CalcFormulaTests()
         {
             // arrange
             int a = 5;
@@ -27,7 +27,7 @@ namespace HomeWork1.Tests
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        public void MixVariablesTest()
+        public void MixVariablesTests()
         {
             // arrange
             string a = "parampampam";
@@ -41,7 +41,7 @@ namespace HomeWork1.Tests
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        public void DivideTheNumbersTest()
+        public void DivideTheNumbersTests()
         {
             // arrange
             int a = 10;
@@ -55,7 +55,7 @@ namespace HomeWork1.Tests
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        public void GetTheRemainderOfTheDivisionTest()
+        public void GetTheRemainderOfTheDivisionTests()
         {
             // arrange
             int a = 10;
@@ -69,7 +69,7 @@ namespace HomeWork1.Tests
             Assert.AreEqual(expected, actual);
         } 
         [Test]
-        public void FindXOfTheLinearEquationTest()
+        public void FindXOfTheLinearEquationTests()
         {
             // arrange
             int a = 2;
@@ -84,7 +84,7 @@ namespace HomeWork1.Tests
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        public void FindAInTheStraightLineFormula()
+        public void FindAInTheStraightLineFormulaTests()
         {
             // arrange
             int x1 = 10;
@@ -100,7 +100,7 @@ namespace HomeWork1.Tests
             Assert.AreEqual(expected, actual);
         } 
         [Test]
-        public void FindBInTheStraightLineFormula()
+        public void FindBInTheStraightLineFormulaTests()
         {
             // arrange
           

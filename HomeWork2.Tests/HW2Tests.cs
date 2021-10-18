@@ -15,7 +15,7 @@ namespace HomeWork2.Tests
         [TestCase(10, 5, 15)]
         [TestCase(1, 5, -4)]
         [TestCase(5, 5, 25)]
-        public void CountTheNumbersAfterTheConditionsTest(int a, int b, double expected)
+        public void CountTheNumbersAfterTheConditionsTests(int a, int b, double expected)
         {
             // arrange
 
@@ -34,7 +34,7 @@ namespace HomeWork2.Tests
         [TestCase(5, -10, "Ваши переменные находятся в четвёртой четверти")]
         [TestCase(-5, -10, "Ваши переменные находятся в в третьей четверти")]
 
-        public void FindTheCoordinateQuarterTest(int x, int y, string expected)
+        public void FindTheCoordinateQuarterTests(int x, int y, string expected)
         {
             // arrange
 
@@ -53,7 +53,7 @@ namespace HomeWork2.Tests
         [TestCase(10, 10, 10, "Числа в порядке возрастания: 10 10 10 ")]
 
 
-        public void PutNumbersInAscendingOrderTest(int a, int b, int c, string expected)
+        public void PutNumbersInAscendingOrderTests(int a, int b, int c, string expected)
         {
             // arrange
 
@@ -71,7 +71,7 @@ namespace HomeWork2.Tests
         [TestCase(5, 3, 7, new double[] {})]
       
         
-        public void FindTheRootsOfTheQuadraticEquationTest(int a, int b, int c, double[] expected)
+        public void FindTheRootsOfTheQuadraticEquationTests(int a, int b, int c, double[] expected)
         {
             // arrange
 
@@ -92,7 +92,7 @@ namespace HomeWork2.Tests
         [TestCase(0, "Ошибка! Нужно двухзначное число.")]
       
         
-        public void TranslateTheNumberIntoTextTest(int a, string expected)
+        public void TranslateTheNumberIntoTextTests(int a, string expected)
         {
             // arrange
 
