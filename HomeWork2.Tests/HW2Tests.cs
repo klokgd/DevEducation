@@ -68,7 +68,7 @@ namespace HomeWork2.Tests
 
         [TestCase(1, -8, 12, new double[] {6, 2})]
         [TestCase(1, -8, 16, new double[] {4})]
-        [TestCase(5, 3, , new double[] {})]
+        [TestCase(5, 3, 7, new double[] {})]
       
         
         public void FindTheRootsOfTheQuadraticEquationTest(int a, int b, int c, double[] expected)
