@@ -184,6 +184,8 @@ namespace ConsoleApp1
                                 break;
                         }
                         break;
+                    default:
+                        break;
                 }
 
 
