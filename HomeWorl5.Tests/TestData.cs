@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HomeWorl5.Tests
+namespace HomeWork5.Tests
 {
     public class TestData
     {
-        public static int[,] FindTheMinimumNumberInAnArrayTest(int index)
+        public static int[,] FindTheMinimumIndexInAnArrayTest(int index)
         {
             return index switch
             {
@@ -15,7 +15,7 @@ namespace HomeWorl5.Tests
                 _ => new int[,] { { } },
             };
         } 
-        public static int[] FindExpectedTheMinimumNumberInAnArrayTest(int index)
+        public static int[] FindExpectedTheMinimumIndexInAnArrayTest(int index)
         {
             return index switch
             {

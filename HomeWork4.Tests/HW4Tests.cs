@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace HomeWork4.Tests
 {
-    public class H4Test
+    public class HW4Test
     {
         private HW4 _hw4;
 
@@ -40,7 +40,7 @@ namespace HomeWork4.Tests
 
             // act
             int actual = _hw4.FindTheMaximumNumberInAnArray(a);
-
+            
             // assert
             Assert.AreEqual(expected, actual);
 

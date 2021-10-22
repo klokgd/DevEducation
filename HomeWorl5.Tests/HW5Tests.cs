@@ -1,8 +1,10 @@
+using HomeWork5;
+using HomeWork5.Tests;
 using NUnit.Framework;
 
 namespace HomeWorl5.Tests
 {
-    public class HW5
+    public class HW5Tests
     {
         private HW5 _hw5;
 
@@ -14,14 +16,14 @@ namespace HomeWorl5.Tests
         }
 
 
-        [TestCase(0)]
+        [TestCase(0, new int[] {2, 1})]
         [TestCase(1)]
         [TestCase(-1)]
-        public void FindTheMaximumIndexInAnArrayTests(int arrayIndex)
+        public void FindTheMinimumIndexInAnArrayTests(int arrayIndex, int[] expected)
         {
             // arrange
-            int[,] arrayToTest = TestData.FindTheMinimumNumberInAnArrayTest(arrayIndex);
-            int[] expected = TestData.FindExpectedTheMinimumNumberInAnArrayTest(arrayIndex);
+            int[,] arrayToTest = TestData.FindTheMinimumIndexInAnArrayTest(arrayIndex);
+            int[] actual = _hw5.FindTheMinimumIndexInAnArray(arrayToTest);
 
             // act
 

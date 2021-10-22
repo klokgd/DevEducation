@@ -4,6 +4,7 @@ using HomeWork2;
 using HomeWork3;
 using HomeWork4;
 using HomeWork5;
+using Lists;
 
 namespace ConsoleApp1
 {
@@ -16,6 +17,18 @@ namespace ConsoleApp1
             HW3 hw3 = new HW3();
             HW4 hw4 = new HW4();
             HW5 hw5 = new HW5();
+
+            ArrayList ar = new ArrayList(new int[] { 1, 2, 3 });
+
+            ar.UpSize();
+
+            int[] testArray = ar.ToArray();
+
+            foreach (var item in testArray)
+            {
+                Console.WriteLine("1");
+            }
+            
 
             bool test = true;
 

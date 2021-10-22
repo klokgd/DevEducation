@@ -68,7 +68,7 @@ namespace HomeWork5
 
        
 
-        private int FindTheMinimumNumberInAnArray(int[,] array)
+        public int FindTheMinimumNumberInAnArray(int[,] array)
         {
             int min = array[0, 0];
 
@@ -104,7 +104,7 @@ namespace HomeWork5
             return max;
 
         }
-        private int[] FindTheMinimumIndexInAnArray(int[,] array)
+        public int[] FindTheMinimumIndexInAnArray(int[,] array)
         {
             int min = array[0, 0];
             int minI = 0;

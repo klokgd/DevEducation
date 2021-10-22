@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ArrayList\Lists.csproj" />
     <ProjectReference Include="..\HomeWork1.Tests\HomeWork1.Tests.csproj" />
     <ProjectReference Include="..\HomeWork1\HomeWork1.csproj" />
     <ProjectReference Include="..\HomeWork2\HomeWork2.csproj" />
