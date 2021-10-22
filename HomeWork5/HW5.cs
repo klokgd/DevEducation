@@ -86,7 +86,7 @@ namespace HomeWork5
             return min;
 
         }
-        private int FindTheMaximumNumberInAnArray(int[,] array)
+        public int FindTheMaximumNumberInAnArray(int[,] array)
         {
             int max = array[0, 0];
 
@@ -125,7 +125,7 @@ namespace HomeWork5
             }
             return inArray;
         }
-        private int[] FindTheMaximumIndexInAnArray(int[,] array)
+        public int[] FindTheMaximumIndexInAnArray(int[,] array)
         {
             int max = array[0, 0];
             int[] inArray = new int[2];
@@ -145,25 +145,24 @@ namespace HomeWork5
             return inArray;
         }
 
-        private int FindFearOfNeighbors(int[,] array)
+        public int FindFearOfNeighbors(int[,] array)
         {
             int testIn = array[0, 0];
             int fearOfNeighbors = 0;
 
             for (int i = 1; i < array.GetLength(0) - 1; i++)
             {
-                for (int j = 1; j < array.GetLength(0) - 1; j++)
+                for (int j = 1; j < array.GetLength(1) - 1; j++)
                 {
                     if (array[i, j] > array[i - 1, j] && array[i, j] > array[i, j - 1] && array[i, j] > array[i, j + 1] && array[i, j] > array[i + 1, j])
                     {
-                        Console.WriteLine($"Число, которое больше соседей: {array[i, j]}");
                         fearOfNeighbors++;
                     }
                 }
             }
             return fearOfNeighbors;
         }
-        private int[,] TransposeMatrix(int[,] array)
+        public int[,] TransposeMatrix(int[,] array)
         {
             int n = 0;
             int x = 0;
@@ -187,7 +186,7 @@ namespace HomeWork5
 
 
 
-        private int[,] AddRandomInArray(int a, int b)
+        public int[,] AddRandomInArray(int a, int b)
         {
             int[,] array = new int[a, b];
             Random rnd = new Random();
