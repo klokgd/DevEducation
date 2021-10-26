@@ -18,16 +18,20 @@ namespace ConsoleApp1
             HW4 hw4 = new HW4();
             HW5 hw5 = new HW5();
 
-            ArrayList ar = new ArrayList(new int[] { 1, 2, 3 });
+            ArrayList first = new ArrayList(new int[] { 1, 6, 3, 2, 0, 7, 8 });
 
-            ar.UpSize();
 
-            int[] testArray = ar.ToArray();
+            first.Sort();
 
-            foreach (var item in testArray)
+            Console.WriteLine();
+
+
+            foreach (var item in first.ToArray())
             {
-                Console.WriteLine("1");
+                Console.WriteLine(item);
+
             }
+
             
 
             bool test = true;
