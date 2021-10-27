@@ -179,7 +179,6 @@ namespace HomeWork5
                 }
                 x++;
             }
-            return array;
         }
 
 

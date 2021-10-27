@@ -103,7 +103,7 @@ namespace HomeWork4.Tests
 
 
             // act
-            _hw4.FlipArray(a);
+            _hw4.SwapArray(a);
 
             // assert
             Assert.AreEqual(expected, a);

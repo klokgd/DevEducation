@@ -100,7 +100,7 @@ namespace HomeWorl5.Tests
             // act
 
             // assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, arrayToTest);
 
         }
     }

@@ -50,7 +50,7 @@ namespace HomeWork4
             int[] array = AddRandomInArray(20);
             DisplayArray(array);
             Console.WriteLine();
-            FlipArray(array);
+            SwapArray(array);
             DisplayArray(array);
 
         }
@@ -191,7 +191,7 @@ namespace HomeWork4
             }
             return oddIn;
         }
-        public void FlipArray(int[] array)
+        public void SwapArray(int[] array)
         {
             int endArray = array.Length - 1;
             int temp = 0;
