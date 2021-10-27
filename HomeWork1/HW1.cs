@@ -15,10 +15,7 @@ namespace HomeWork1
         {
             string a = GetTextFromUser("Введите текст А: ");
             string b = GetTextFromUser("Введите текст В: ");
-            
-            string mix = b;
-            b = MixVariables(b, a);
-            a = MixVariables(a, mix);
+            MixVariables(ref a, b);
             Console.WriteLine("Теперь A - " + a + ", а B - это " + b);
 
         }
@@ -27,7 +24,7 @@ namespace HomeWork1
             int a = GetNumberFromUser("Введите число А: ");
             int b = GetNumberFromUser("Введите число B: ");
             double divisionResult = DivideTheNumbers(a, b);
-            double integerRemainder = GetTheRemainderOfTheDivision(a, b);
+            int integerRemainder = GetTheRemainderOfTheDivision(a, b);
             Console.WriteLine("Результат деления чисел: " + divisionResult);
             Console.WriteLine("Остаток от деления: " + integerRemainder);
         }
@@ -80,9 +77,9 @@ namespace HomeWork1
             double calculationResult = a / b;
             return calculationResult;
         }
-        public double GetTheRemainderOfTheDivision(int a, int b)
+        public int GetTheRemainderOfTheDivision(int a, int b)
         {
-            double calculationResult = a % b;
+            int calculationResult = a % b;
             return calculationResult;
         }
         public double FindXOfTheLinearEquation(int a, int b, int c)
@@ -105,11 +102,11 @@ namespace HomeWork1
             return b;
         }
 
-        public string MixVariables(string a, string b)
+        public void MixVariables(ref string a, string b)
         {
-
+            string x = a;
             a = b;
-            return a;
+            b = x;
         }
         
 

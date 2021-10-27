@@ -19,20 +19,19 @@ namespace ConsoleApp1
             HW5 hw5 = new HW5();
 
             ArrayList first = new ArrayList(new int[] { 1, 6, 3, 2, 0, 7, 8 });
+            LinkedList second = new LinkedList(new int[] { 1, 3, 0, 666, 5, 2 });
 
-
-            first.Sort();
-
+            Console.WriteLine(  second.IndexOfMin());
             Console.WriteLine();
 
 
-            foreach (var item in first.ToArray())
+            foreach (var item in second.ToArray())
             {
                 Console.WriteLine(item);
 
             }
 
-            
+
 
             bool test = true;
 

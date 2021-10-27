@@ -32,6 +32,10 @@ namespace Lists
 
 
         }
+        public int GetLength()
+        {
+            return RealLength;
+        }
 
         public void AddLast(int number)
         {

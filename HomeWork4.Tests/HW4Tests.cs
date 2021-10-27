@@ -103,10 +103,10 @@ namespace HomeWork4.Tests
 
 
             // act
-            int[] actual = _hw4.FlipArray(a);
+            _hw4.FlipArray(a);
 
             // assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, a);
 
         }
         [TestCase(new int[] { 1, 2, 3 }, 2)]
@@ -133,10 +133,10 @@ namespace HomeWork4.Tests
 
 
             // act
-            int[] actual = _hw4.SwapParts(a);
+            _hw4.SwapParts(a);
 
             // assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, a);
 
         }
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 })]
@@ -148,10 +148,10 @@ namespace HomeWork4.Tests
 
 
             // act
-            int[] actual = _hw4.BubbleSort(a);
+             _hw4.BubbleSort(a);
 
             // assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, a);
 
         }
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1 })]
@@ -164,10 +164,10 @@ namespace HomeWork4.Tests
 
 
             // act
-            int[] actual = _hw4.InsertSort(a);
+             _hw4.InsertSort(a);
 
             // assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, a);
 
         }
     }

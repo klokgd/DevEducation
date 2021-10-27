@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWork4.Tests", "HomeWork
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWorl5.Tests", "HomeWorl5.Tests\HomeWorl5.Tests.csproj", "{D8B8B752-3A9D-4FF0-840B-D18989A92CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lists", "ArrayList\Lists.csproj", "{E2D1F5A7-8C7F-4850-A1BB-3CA727229FFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lists", "ArrayList\Lists.csproj", "{E2D1F5A7-8C7F-4850-A1BB-3CA727229FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List.Tests", "ArrayListTests\List.Tests.csproj", "{B128B263-B0F1-4251-9678-9FDAC6D273DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "List.Tests", "ArrayListTests\List.Tests.csproj", "{B128B263-B0F1-4251-9678-9FDAC6D273DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

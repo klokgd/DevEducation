@@ -17,13 +17,13 @@ namespace HomeWork3.Tests
         [TestCase(2, 3, 8)]
         [TestCase(3, 3, 27)]
         [TestCase(-1, 3, -1)]
-        public void ExponentiationTests(int a, int b, int expected)
+        public void RaiseNumberToPowerTests(int a, int b, int expected)
         {
             // arrange
 
 
             // act
-            double actual = _hw3.Exponentiation(a, b);
+            double actual = _hw3.RaiseNumberToPower(a, b);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -48,13 +48,13 @@ namespace HomeWork3.Tests
         [TestCase(40, 6)]
         [TestCase(1, 0)]
         [TestCase(100, 9)]
-        public void FindNumbersLessThanSquaredTests(int a, int expected)
+        public void GetCountOfNumbersLessThanSquaredTests(int a, int expected)
         {
             // arrange
 
 
             // act
-            int actual = _hw3.FindNumbersLessThanSquared(a);
+            int actual = _hw3.GetCountOfNumbersLessThanSquared(a);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -80,26 +80,26 @@ namespace HomeWork3.Tests
         [TestCase(100, 50, 539)]
         [TestCase(-10, 20, 14)]
         [TestCase(-30, 20, -49)]
-        public void FindNumbersDivisibleBy7Tests(int a, int b, int expected)
+        public void FindSumNumbersDivisibleBy7Tests(int a, int b, int expected)
         {
             // arrange
 
 
             // act
-            int actual = _hw3.FindNumbersDivisibleBy7(a, b);
+            int actual = _hw3.FindSumNumbersDivisibleBy7(a, b);
 
             // assert
             Assert.AreEqual(expected, actual);
 
         }  
-        [TestCase(6, new int[] { 2, 3, 5, 8, 13, 21})]
+        [TestCase(5, 13)]
         public void PrintASeriesOfFibonacciNumbersTests(int a, int[] expected)
         {
             // arrange
 
 
             // act
-            int[] actual = _hw3.PrintASeriesOfFibonacciNumbers(a);
+            int actual = _hw3.FindNumberOfFibonacci(a);
 
             // assert
             Assert.AreEqual(expected, actual);

@@ -27,12 +27,12 @@ namespace HomeWork2.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        [TestCase(10, 5, "Ваши переменные находятся в первой четверти")]
-        [TestCase(0, 5, "Ваши переменные находятся на координате Х")]
-        [TestCase(5, 0, "Ваши переменные находятся на координате Y")]
-        [TestCase(-5, 10, "Ваши переменные находятся в второй четверти")]
-        [TestCase(5, -10, "Ваши переменные находятся в четвёртой четверти")]
-        [TestCase(-5, -10, "Ваши переменные находятся в в третьей четверти")]
+        [TestCase(10, 5, 1)]
+        [TestCase(0, 5, 5)]
+        [TestCase(5, 0, 6)]
+        [TestCase(-5, 10, 2)]
+        [TestCase(5, -10, 4)]
+        [TestCase(-5, -10, 3)]
 
         public void FindTheCoordinateQuarterTests(int x, int y, string expected)
         {
@@ -40,7 +40,7 @@ namespace HomeWork2.Tests
 
 
             // act
-            string actual = _hw2.FindTheCoordinateQuarter(x, y);
+            int actual = _hw2.FindTheCoordinateQuarter(x, y);
 
             // assert
             Assert.AreEqual(expected, actual);

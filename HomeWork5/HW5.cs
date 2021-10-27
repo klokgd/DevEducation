@@ -51,14 +51,14 @@ namespace HomeWork5
            
             Console.WriteLine("Транспонированная матрица:");
 
-            int[,] result = TransposeMatrix(array);
+            TransposeMatrix(array);
 
-            for (int i = 0; i < result.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < result.GetLength(1); j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
 
-                    Console.Write($"{result[i, j]}\t");
+                    Console.Write($"{array[i, j]}\t");
 
                 }
                 Console.WriteLine();
@@ -162,7 +162,7 @@ namespace HomeWork5
             }
             return fearOfNeighbors;
         }
-        public int[,] TransposeMatrix(int[,] array)
+        public void TransposeMatrix(int[,] array)
         {
             int n = 0;
             int x = 0;

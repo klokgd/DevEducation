@@ -35,10 +35,10 @@ namespace HomeWork1.Tests
             string expected = "чевапчичи";
 
             // act
-            string actual = _hw1.MixVariables(a, b);
+            _hw1.MixVariables(ref a, b);
 
             // assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, a);
         }
         [Test]
         public void DivideTheNumbersTests()
@@ -63,7 +63,7 @@ namespace HomeWork1.Tests
             double expected = 0;
 
             // act
-            double actual = _hw1.GetTheRemainderOfTheDivision(a, b);
+            int actual = _hw1.GetTheRemainderOfTheDivision(a, b);
 
             // assert
             Assert.AreEqual(expected, actual);

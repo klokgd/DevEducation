@@ -15,7 +15,7 @@ namespace HomeWork2
         {
             int x = GetNumberFromUser("Введите координату X: ");
             int y = GetNumberFromUser("Введите координату Y: ");
-            string result = FindTheCoordinateQuarter(x, y);
+            int result = FindTheCoordinateQuarter(x, y);
             Console.WriteLine(result);
         }
         public void SolveTask3()
@@ -75,33 +75,33 @@ namespace HomeWork2
 
         }
 
-        public string FindTheCoordinateQuarter(int x, int y)
+        public int FindTheCoordinateQuarter(int x, int y)
         {
-            string result = "";
+            int result = 0;
 
             if ((x > 0) && (y > 0))
             {
-                result = "Ваши переменные находятся в первой четверти";
+                result = 1;
             }
             else if ((x < 0) && (y > 0))
             {
-                result = "Ваши переменные находятся в второй четверти";
+                result = 2;
             }
             else if ((x < 0) && (y < 0))
             {
-                result = "Ваши переменные находятся в в третьей четверти";
+                result = 3;
             }
             else if ((x > 0) && (y < 0))
             {
-                result = "Ваши переменные находятся в четвёртой четверти";
+                result = 4;
             }
             else if (x == 0)
             {
-                result = "Ваши переменные находятся на координате Х";
+                result = 5;
             }
             else if (y == 0)
             {
-                result = "Ваши переменные находятся на координате Y";
+                result = 6;
             }
 
             return result;

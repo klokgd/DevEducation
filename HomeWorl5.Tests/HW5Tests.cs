@@ -94,7 +94,7 @@ namespace HomeWorl5.Tests
         {
             // arrange
             int[,] arrayToTest = TestData.TransposeMatrixTest(arrayIndex);
-            int[,] actual = _hw5.TransposeMatrix(arrayToTest);
+            _hw5.TransposeMatrix(arrayToTest);
             int[,] expected = TestData.TransposeMatrixExpect(arrayIndex);
 
             // act

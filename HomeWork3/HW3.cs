@@ -8,7 +8,7 @@ namespace HomeWork3
         {
             int a = GetNumberFromUser("Введите число: ");
             int b = GetNumberFromUser("Введите степень: ");
-            int result = Exponentiation(a, b);
+            int result = RaiseNumberToPower(a, b);
             Console.WriteLine($"Результат: {result}");
         }
         public void SolveTask2()
@@ -23,7 +23,7 @@ namespace HomeWork3
         public void SolveTask3()
         {
             int a = GetNumberFromUser("Введите число: ");
-            int result = FindNumbersLessThanSquared(a);
+            int result = GetCountOfNumbersLessThanSquared(a);
             Console.WriteLine($"Количество необходимых чисел: {result}");
         }
         public void SolveTask4()
@@ -36,17 +36,16 @@ namespace HomeWork3
         {
             int a = GetNumberFromUser("Введите первое число: ");
             int b = GetNumberFromUser("Введите второе число: ");
-            int result = FindNumbersDivisibleBy7(a, b);
+
+
+            int result = FindSumNumbersDivisibleBy7(a, b);
             Console.WriteLine($"Сумма всех найденных чисел: {result}");
         }
         public void SolveTask6()
         {
             int a = GetNumberFromUser("Введите ряд чисел фибоначчи:");
-            int[] result = PrintASeriesOfFibonacciNumbers(a);
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
+            int result = FindNumberOfFibonacci(a);
+            Console.WriteLine(result);
 
         }
         public void SolveTask7()
@@ -109,7 +108,7 @@ namespace HomeWork3
             return number;
         }
 
-        public int Exponentiation(int a, int b)
+        public int RaiseNumberToPower(int a, int b)
         {
             int intermediate;
             int result = a;
@@ -131,7 +130,6 @@ namespace HomeWork3
                 if (index % a == 0)
                 {
                     length++;
-                    Console.WriteLine($"Число {index} делится на число {a}");
                 }
             }
 
@@ -153,7 +151,7 @@ namespace HomeWork3
             return result;
         }
 
-        public int FindNumbersLessThanSquared(int a)
+        public int GetCountOfNumbersLessThanSquared(int a)
         {
             int result = 0;
             for (int index = 1; index < a; index++)
@@ -161,7 +159,6 @@ namespace HomeWork3
 
                 if (Math.Pow(index, 2) < a)
                 {
-                    Console.WriteLine($"Число {index} меньше числа {a} в квадрате");
                     result += 1;
                 }
             };
@@ -183,42 +180,35 @@ namespace HomeWork3
             return result;
         }
 
-        public int FindNumbersDivisibleBy7(int a, int b)
+        public int FindSumNumbersDivisibleBy7(int a, int b)
         {
             int equal = 0;
-
+            int mix = 0;
             if (a < b)
             {
-                for (int i = a; i <= b; i++)
-                {
-                    if (i % 7 == 0)
-                    {
-                        equal += i;
-
-                    }
-                }
+                mix = a;
+                a = b;
+                b = mix;
             }
-            else
+
+            for (int i = b; i <= a; i++)
             {
-                for (int i = b; i <= a; i++)
+                if (i % 7 == 0)
                 {
-                    if (i % 7 == 0)
-                    {
-                        equal += i;
+                    equal += i;
 
-                    }
                 }
             }
+
 
             return equal;
         }
 
-        public int[] PrintASeriesOfFibonacciNumbers(int a)
+        public int FindNumberOfFibonacci(int a)
         {
             int y = 1;
             int x = 1;
             int equal = 0;
-            int[] result = new int[a];
 
             for (int i = 0; i < a; i++)
             {
@@ -226,10 +216,9 @@ namespace HomeWork3
                 x = y;
                 y = equal;
 
-                result[i] = y;
             }
 
-            return result;
+            return y;
 
         }
 
