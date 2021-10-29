@@ -18,14 +18,15 @@ namespace ConsoleApp1
             HW4 hw4 = new HW4();
             HW5 hw5 = new HW5();
 
-            ArrayList first = new ArrayList(new int[] { 1, 6, 3, 2, 0, 7, 8 });
-            LinkedList second = new LinkedList(new int[] { 1, 3, 0, 666, 5, 2 });
+            ArrayList first = new ArrayList(new int[] { 1, 6, 3, 3});
+            ArrayList second = new ArrayList(new int[] { 4, 5 });
 
             Console.WriteLine(  second.IndexOfMin());
             Console.WriteLine();
 
+            first.RemoveAll(3);
 
-            foreach (var item in second.ToArray())
+            foreach (var item in first.ToArray())
             {
                 Console.WriteLine(item);
 

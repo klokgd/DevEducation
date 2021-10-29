@@ -302,6 +302,25 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
+
+        [TestCase(new int[] { 1, 2, 5, 5, 6, 6 }, 5, new int[] { 1, 2, 6, 6 })]
+        [TestCase(new int[] { 1, 2, 5, 5, 6, 6 }, 6, new int[] { 1, 2, 5, 5 })]
+        [TestCase(new int[] { 1, 2, 5, 5, 6, 6, 5 }, 5, new int[] { 1, 2, 6, 6 })]
+        public void RemoveAllTests(int[] array, int n, int[] expected)
+        {
+            // arrange
+            ArrayList arrayToTest = new ArrayList(array);
+
+            arrayToTest.RemoveAll(n);
+
+            // act
+            int[] actual = arrayToTest.ToArray();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 2, new int[] { 1, 2, 6, 6 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 0, new int[] { 1, 2, 4, 5, 6, 6 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 4, new int[] { 1, 2 })]
@@ -542,6 +561,22 @@ namespace List.Tests
             ArrayList arrayToTest = new ArrayList(array);
 
             arrayToTest.SortDesc();
+
+            // act
+            int[] actual = arrayToTest.ToArray();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        } 
+        [TestCase(new int[] { 1, 4, 3, 2, 5, 7 }, new int[] { 7, 5, 2, 3, 4, 1 })]
+        [TestCase(new int[] { 1, 4, 3, 6, 2, 5, 7 }, new int[] { 7, 5, 2, 6, 3, 4, 1 })]
+        public void ReverseTests(int[] array, int[] expected)
+        {
+            // arrange
+            ArrayList arrayToTest = new ArrayList(array);
+
+            arrayToTest.Reverse();
 
             // act
             int[] actual = arrayToTest.ToArray();
