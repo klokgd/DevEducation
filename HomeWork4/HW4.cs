@@ -67,7 +67,7 @@ namespace HomeWork4
             int[] array = AddRandomInArray(20);
             DisplayArray(array);
 
-             SwapParts(array);
+            SwapParts(array);
             Console.WriteLine("Изменили части массива:");
             DisplayArray(array);
 
@@ -109,7 +109,6 @@ namespace HomeWork4
         {
             int min = array[1];
 
-            Console.WriteLine();
 
             foreach (int element in array)
             {
@@ -124,10 +123,9 @@ namespace HomeWork4
         {
             int max = array[1];
 
-           
 
 
-            Console.WriteLine();
+
 
             foreach (int element in array)
             {
@@ -142,10 +140,9 @@ namespace HomeWork4
         {
             int min = array[0];
             int minIn = 0;
-           
 
 
-            Console.WriteLine();
+
 
             for (int index = 0; index < array.Length; index++)
             {
@@ -161,10 +158,9 @@ namespace HomeWork4
         {
             int max = array[0];
             int maxIn = 0;
-           
 
 
-            Console.WriteLine();
+
             for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] > max)
@@ -178,7 +174,7 @@ namespace HomeWork4
         public int CalculateTheSumOddIndices(int[] array)
         {
             int oddIn = 0;
-           
+
 
 
             for (int index = 0; index < array.Length; index++)
@@ -196,7 +192,7 @@ namespace HomeWork4
             int endArray = array.Length - 1;
             int temp = 0;
             int halfArray = array.Length / 2;
-           
+
 
             for (int index = 0; index < halfArray; index++)
             {
@@ -224,14 +220,14 @@ namespace HomeWork4
         {
             int oddEq = 0;
 
-           
+
 
 
             for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] % 2 != 0)
                 {
-                    
+
                     oddEq += 1;
                 }
 
@@ -242,7 +238,7 @@ namespace HomeWork4
         public void SwapParts(int[] array)
         {
 
-           
+
 
 
             int half = array.Length / 2;

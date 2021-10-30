@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace HomeWork2.Tests
 {
@@ -51,6 +52,7 @@ namespace HomeWork2.Tests
         [TestCase(0, 10, 20, "Числа в порядке возрастания: 0 10 20 ")]
         [TestCase(0, 10, 10, "Числа в порядке возрастания: 0 10 10 ")]
         [TestCase(10, 10, 10, "Числа в порядке возрастания: 10 10 10 ")]
+        [TestCase(10, 50, 10, "Числа в порядке возрастания: 10 10 50 ")]
 
 
         public void PutNumbersInAscendingOrderTests(int a, int b, int c, string expected)
@@ -88,8 +90,6 @@ namespace HomeWork2.Tests
         [TestCase(23, "Текст в число:\nДвадцать Три")]
         [TestCase(50, "Текст в число:\nПятьдесят")]
         [TestCase(15, "Текст в число:\nПятнадцать")]
-        [TestCase(105, "Ошибка! Нужно двухзначное число.")]
-        [TestCase(0, "Ошибка! Нужно двухзначное число.")]
       
         
         public void TranslateTheNumberIntoTextTests(int a, string expected)
@@ -102,6 +102,20 @@ namespace HomeWork2.Tests
 
             // assert
             Assert.AreEqual(expected, actual);
+
+        }
+        [TestCase(105, "Ошибка! Нужно двухзначное число.")]
+        [TestCase(0, "Ошибка! Нужно двухзначное число.")]
+      
+        public void TranslateTheNumberIntoTextNegativeTests(int a, string expected)
+        {
+            // arrange
+
+
+            // act
+
+            // assert
+            Assert.Throws(typeof(ArgumentException), () => _hw2.TranslateTheNumberIntoText(a));
 
         }
 

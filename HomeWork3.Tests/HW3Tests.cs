@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace HomeWork3.Tests
 {
@@ -28,7 +29,19 @@ namespace HomeWork3.Tests
             // assert
             Assert.AreEqual(expected, actual);
 
-        } 
+        }
+        [TestCase(0, 3, -1)]
+        [TestCase(3, 0, -1)]
+        public void RaiseNumberToPowerNegativeTests(int a, int b, int expected)
+        {
+            // arrange
+
+
+            // act
+            Assert.Throws(typeof(ArgumentException), () => _hw3.RaiseNumberToPower(a, b));
+
+
+        }
         [TestCase(200, new int[] { 0, 200, 400, 600, 800, 1000 })]
         [TestCase(500, new int[] { 0, 500, 1000 })]
         public void PrintNumbersThatAreDivisibleByANumberTests(int a, int[] expected)
@@ -93,7 +106,9 @@ namespace HomeWork3.Tests
 
         }  
         [TestCase(5, 13)]
-        public void PrintASeriesOfFibonacciNumbersTests(int a, int[] expected)
+        [TestCase(0, 1)]
+        [TestCase(20, 17711)]
+        public void PrintASeriesOfFibonacciNumbersTests(int a, int expected)
         {
             // arrange
 
@@ -120,6 +135,18 @@ namespace HomeWork3.Tests
             Assert.AreEqual(expected, actual);
 
         }
+        [TestCase(0, 20, 10)]
+        [TestCase(20, 0, 10)]
+        public void LookingForACommonDivisorOfTwoNumbersNegativeTests(int a, int b, int expected)
+        {
+            // arrange
+
+
+            // act
+            Assert.Throws(typeof(DivideByZeroException), () => _hw3.LookingForACommonDivisorOfTwoNumbers(a, b));
+
+
+        }
         [TestCase(27, 3)]
         [TestCase(125, 5)]
         [TestCase(729, 9)]
@@ -133,6 +160,18 @@ namespace HomeWork3.Tests
 
             // assert
             Assert.AreEqual(expected, actual);
+
+        }
+        [TestCase(0, 9)]
+        public void SearchNumberCubeNegativeTests(int a, int expected)
+        {
+            // arrange
+
+
+            // act
+            Assert.Throws(typeof(DivideByZeroException), () => _hw3.SearchNumberCube(a));
+
+            // assert
 
         }
         [TestCase(9, 1)]
@@ -186,6 +225,9 @@ namespace HomeWork3.Tests
         [TestCase(175, 300, "ÍÅÒ")]
         [TestCase(175, 100, "ÄÀ!")]
         [TestCase(175, 444, "ÍÅÒ")]
+        [TestCase(104, 0, "ÄÀ!")]
+        [TestCase(0, 104, "ÄÀ!")]
+        [TestCase(0, 0, "ÄÀ!")]
 
         public void FindIdenticalNumbersInAPairTests(int a, int b, string expected)
         {

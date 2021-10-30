@@ -15,7 +15,7 @@ namespace HomeWork1
         {
             string a = GetTextFromUser("Введите текст А: ");
             string b = GetTextFromUser("Введите текст В: ");
-            MixVariables(ref a, b);
+            SwapVariables(ref a, ref b);
             Console.WriteLine("Теперь A - " + a + ", а B - это " + b);
 
         }
@@ -72,9 +72,9 @@ namespace HomeWork1
             return calculationResult;
         }
 
-        public double DivideTheNumbers(int a, int b)
+        public int DivideTheNumbers(int a, int b)
         {
-            double calculationResult = a / b;
+            int calculationResult = a / b;
             return calculationResult;
         }
         public int GetTheRemainderOfTheDivision(int a, int b)
@@ -84,6 +84,10 @@ namespace HomeWork1
         }
         public double FindXOfTheLinearEquation(int a, int b, int c)
         {
+            if (a == 0)
+            {
+                throw new DivideByZeroException("Значение А должно быть больше нуля");
+            }
             double x = (c - b) / a;
             return x;
         }
@@ -91,7 +95,7 @@ namespace HomeWork1
         {
             if (x1 == x2)
             {
-                throw new ArgumentException("Значения X1 и X2 должны быть разными");
+                throw new DivideByZeroException("Значения X1 и X2 должны быть разными");
             }
             double a = (y1 - y2) / (x1 - x2);
             return a;
@@ -102,7 +106,7 @@ namespace HomeWork1
             return b;
         }
 
-        public void MixVariables(ref string a, string b)
+        public void SwapVariables(ref string a, ref string b)
         {
             string x = a;
             a = b;

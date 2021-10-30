@@ -16,7 +16,8 @@ namespace HomeWork2
             int x = GetNumberFromUser("Введите координату X: ");
             int y = GetNumberFromUser("Введите координату Y: ");
             int result = FindTheCoordinateQuarter(x, y);
-            Console.WriteLine(result);
+            string coordinateQuarter = TranslateCoordinateQuarter(result);
+            Console.WriteLine(coordinateQuarter);
         }
         public void SolveTask3()
         {
@@ -105,6 +106,36 @@ namespace HomeWork2
             }
 
             return result;
+        }
+
+        public string TranslateCoordinateQuarter(int a)
+        {
+            string text = "";
+            switch (a)
+            {
+                case 1:
+                   text = "Ваши коордианты в первой четверти";
+                    break;
+                case 2:
+                    text = "Ваши коордианты во второй четверти";
+                    break;
+                case 3:
+                    text = "Ваши коордианты в третьей четверти";
+                    break;
+                case 4:
+                    text = "Ваши коордианты во четвертой четверти";
+                    break;
+                case 5:
+                    text = "Ваши коордианты на оси Х";
+                    break;
+                default:
+                    text = "Ваши коордианты на оси Y";
+                    break;
+            }
+
+            return text;
+
+
         }
 
         public int FindSeniorNumber(int a, int b, int c)
@@ -352,8 +383,7 @@ namespace HomeWork2
             }
             else
             {
-                string result = "Ошибка! Нужно двухзначное число.";
-                return result;
+                throw new ArgumentException("Ошибка! Нужно двухзначное число.");
 
             }
         }

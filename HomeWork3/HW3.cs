@@ -113,6 +113,15 @@ namespace HomeWork3
             int intermediate;
             int result = a;
 
+            if (a == 0)
+            {
+                throw new ArgumentException("0 нельзя вовзести в степень");
+            }
+            if (b == 0)
+            {
+                throw new ArgumentException("Не существует нулевой степени");
+            }
+
             for (int index = 1; index < b; index++)
             {
                 intermediate = a;
@@ -228,6 +237,10 @@ namespace HomeWork3
             int tempA = a;
             int tempB = b;
             int result = 0;
+            if (a == 0 || b == 0)
+            {
+                throw new DivideByZeroException("Числа должны быть больше 0");
+            }
             do
             {
                 if (a > b)
@@ -288,7 +301,7 @@ namespace HomeWork3
             int mid = a / 2;
             if (a == 0)
             {
-                Console.WriteLine("Число A равно нулю");
+                throw new DivideByZeroException("Число А равно 0");
             }
             else
             {
@@ -454,16 +467,16 @@ namespace HomeWork3
         {
             int partA;
             int partB;
-            int bruteB = b;
             string result = "";
-            while (a > 0)
+            do
             {
                 partA = a % 10;
                 a = a / 10;
                 partB = b;
-                while (partB > 0)
-                {
 
+               
+                do
+                {
                     if (partB % 10 == partA)
                     {
                         result = "ДА!";
@@ -471,9 +484,9 @@ namespace HomeWork3
                     }
                     partB = partB / 10;
                 }
-
-
+                while (partB > 0);
             }
+            while (a > 0) ;
             if (result == "")
             {
                 result = "НЕТ";
