@@ -48,8 +48,9 @@ namespace Lists
         {
             int[] tempAr = new int[GetLength()];
             Node current = _head;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+            for (int i = 0; i < length; i++)
             {
                 tempAr[i] = current.Value;
                 current = current.Next;
@@ -206,8 +207,9 @@ namespace Lists
         {
             Node current = _head;
             int qualityNumbers = 0;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value == val)
                 {
@@ -241,8 +243,10 @@ namespace Lists
             bool test = false;
 
             Node current = _head;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value == val)
                 {
@@ -258,8 +262,9 @@ namespace Lists
 
             Node current = _head;
             int index = 0;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value == val)
                 {
@@ -306,8 +311,10 @@ namespace Lists
             int max = _head.Value;
 
             Node current = _head;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value > max)
                 {
@@ -323,8 +330,9 @@ namespace Lists
             int max = _head.Value;
             int index = 0;
             Node current = _head;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value > max)
                 {
@@ -341,8 +349,10 @@ namespace Lists
             int min = _head.Value;
 
             Node current = _head;
+            int length = GetLength();
 
-            for (int i = 0; i < GetLength(); i++)
+
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value < min)
                 {
@@ -357,10 +367,10 @@ namespace Lists
         {
             int min = _head.Value;
             int index = 0;
-
+            int length = GetLength();
             Node current = _head;
 
-            for (int i = 0; i < GetLength(); i++)
+            for (int i = 0; i < length; i++)
             {
                 if (current.Value < min)
                 {
@@ -372,6 +382,101 @@ namespace Lists
             }
             return index;
 
+        }
+
+        public void Sort()
+        {
+            int[] tempAr = ToArray();
+            bool test = true;
+            int n = 0;
+            int index = GetLength();
+
+            while (test)
+            {
+                test = false;
+                Node current = _head;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    if (current != null && current.Next != null && current.Value > current.Next.Value )
+                    {
+                        n = current.Value;
+                        current.Value = current.Next.Value;
+                        current.Next.Value = n;
+                        test = true;
+                    }
+                        current = current.Next;
+
+                }
+            }
+
+
+            //for (int i = 0; i < tempAr.Length; i++)
+            //{
+            //    current.Value = tempAr[i];
+            //    current = current.Next;
+
+            //}
+
+        }
+        public void SortDesc()
+        {
+            int length = GetLength();
+
+            Node interval = _head;
+            int n = 0;
+            for (int i = 0; i < length; i++)
+            {
+                Node current = interval.Next;
+
+                int maxIndex = i;
+                int maxValue = interval.Value;
+                for (int j = i + 1; j < length; j++)
+                {
+
+                    if (maxValue < current.Value)
+                    {
+                        maxValue = current.Value;
+                        maxIndex = j;
+                    }
+                    current = current.Next;
+                }
+                n = interval.Value;
+                current = FindIdx(maxIndex + 1);
+                interval.Value = maxValue;
+                current.Value = n;
+
+                interval = interval.Next;
+            }
+
+            //Node current = _head;
+
+            //for (int i = 0; i < tempAr.Length; i++)
+            //{
+            //    current.Value = tempAr[i];
+            //    current = current.Next;
+
+            //}
+            //;
+        }
+
+        public void Reverse()
+        {
+            Node current = _head;
+            Node next = new Node(0);
+            Node prev = _head;
+            int index = GetLength();
+
+            for (int i = 0; i < index; i++)
+            {
+               AddFirst(current.Value);
+                
+               current = current.Next;
+            }
+            for (int i = 0; i < index; i++)
+            {
+                RemoveLast();
+            }
         }
 
         public Node FindIdx(int idx)
@@ -386,8 +491,8 @@ namespace Lists
 
             }
             return current;
-        }
-
+        } 
+       
         public void ErrorIdx(int idx)
         {
             if (idx > GetLength())
