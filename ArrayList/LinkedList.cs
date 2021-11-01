@@ -9,6 +9,12 @@ namespace Lists
         private Node _tail;
         private Node _head;
 
+        public LinkedList()
+        {
+            _head = null;
+            _tail = _head;
+        }
+
         public LinkedList(int value)
         {
             _head = new Node(value);
@@ -96,14 +102,21 @@ namespace Lists
 
         public void AddAt(int idx, int val)
         {
+            ErrorIdx(idx);
             Node current = FindIdx(idx);
 
 
             Node addNumber = new Node(val);
-            addNumber.Next = current.Next;
+            if (idx == 0)
+            {
+                AddFirst(val);
+            }
+            else
+            {
+                addNumber.Next = current.Next;
 
-            current.Next = addNumber;
-
+                current.Next = addNumber;
+            }
         }
 
 
@@ -174,6 +187,7 @@ namespace Lists
 
         public void RemoveAtMultiple(int idx, int n)
         {
+            ErrorIdx(idx);
             Node current = FindIdx(idx);
 
             Node interval = _head;
@@ -188,7 +202,7 @@ namespace Lists
 
         }
 
-        public void RemoveFirst(int val)
+        public int RemoveFirst(int val)
         {
             Node current = _head;
             int index = 0;
@@ -201,7 +215,7 @@ namespace Lists
             Node tempCurrent = FindIdx(index);
             tempCurrent.Next = tempCurrent.Next.Next;
 
-
+            return index;
         }
         public void RemoveAll(int val)
         {
@@ -213,7 +227,7 @@ namespace Lists
             {
                 if (current.Value == val)
                 {
-                qualityNumbers++;
+                    qualityNumbers++;
 
                 }
                 current = current.Next;
@@ -281,13 +295,13 @@ namespace Lists
         {
             int first = _head.Value;
             return first;
-        } 
+        }
         public int GetLast()
         {
             int last = _tail.Value;
             return last;
         }
-        
+
         public int Get(int idx)
         {
             int value = 0;
@@ -398,14 +412,14 @@ namespace Lists
 
                 for (int i = 0; i < index - 1; i++)
                 {
-                    if (current != null && current.Next != null && current.Value > current.Next.Value )
+                    if (current != null && current.Next != null && current.Value > current.Next.Value)
                     {
                         n = current.Value;
                         current.Value = current.Next.Value;
                         current.Next.Value = n;
                         test = true;
                     }
-                        current = current.Next;
+                    current = current.Next;
 
                 }
             }
@@ -469,9 +483,9 @@ namespace Lists
 
             for (int i = 0; i < index; i++)
             {
-               AddFirst(current.Value);
-                
-               current = current.Next;
+                AddFirst(current.Value);
+
+                current = current.Next;
             }
             for (int i = 0; i < index; i++)
             {
@@ -491,8 +505,8 @@ namespace Lists
 
             }
             return current;
-        } 
-       
+        }
+
         public void ErrorIdx(int idx)
         {
             if (idx > GetLength())

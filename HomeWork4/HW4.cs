@@ -107,8 +107,11 @@ namespace HomeWork4
         }
         public int FindTheMinimumNumberInAnArray(int[] array)
         {
-            int min = array[1];
-
+            int min = array[0];
+            if (array.Length == 0)
+            {
+                throw new IndexOutOfRangeException("Передан пустой массив");
+            }
 
             foreach (int element in array)
             {
@@ -121,7 +124,11 @@ namespace HomeWork4
         }
         public int FindTheMaximumNumberInAnArray(int[] array)
         {
-            int max = array[1];
+            int max = array[0];
+            if (array.Length == 0)
+            {
+                throw new IndexOutOfRangeException("Передан пустой массив");
+            }
 
 
 

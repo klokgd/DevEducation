@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace HomeWork4.Tests
 {
@@ -17,7 +18,8 @@ namespace HomeWork4.Tests
         [TestCase(new int[] { 300, 2, 1000 }, 2)]
         [TestCase(new int[] { 300, 2, 1000, 0 }, 0)]
         [TestCase(new int[] { 300, 2, -1000, 0 }, -1000)]
-        public void PrintNumbersThatAreDivisibleByANumberTests(int[] a, int expected)
+        [TestCase(new int[] { 2 }, 2)]
+        public void FindTheMinimumNumberInAnArrayTests(int[] a, int expected)
         {
             // arrange
 
@@ -29,10 +31,33 @@ namespace HomeWork4.Tests
             Assert.AreEqual(expected, actual);
 
         }
+        [TestCase(new int[] {}, -1000)]
+        public void FindTheMinimumNumberInAnArrayNegativeTests(int[] a, int expected)
+        {
+            // arrange
+
+
+            // act
+            Assert.Throws(typeof(IndexOutOfRangeException), () => _hw4.FindTheMinimumIndexInAnArray(a));
+
+
+        } 
+        [TestCase(new int[] {}, -1000)]
+        public void FindTheMaximumNumberInAnArrayNegativeTests(int[] a, int expected)
+        {
+            // arrange
+
+
+            // act
+            Assert.Throws(typeof(IndexOutOfRangeException), () => _hw4.FindTheMaximumNumberInAnArray(a));
+
+
+        }
         [TestCase(new int[] { 0, 500, 1000 }, 1000)]
         [TestCase(new int[] { 300, 2, 1000 }, 1000)]
         [TestCase(new int[] { 300, 2, 0, 400 }, 400)]
         [TestCase(new int[] { 300, 2, -1000, 0 }, 300)]
+        [TestCase(new int[] { 300 }, 300)]
         public void FindTheMaximumNumberInAnArrayTests(int[] a, int expected)
         {
             // arrange
