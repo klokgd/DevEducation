@@ -50,7 +50,7 @@ namespace HomeWork4
             int[] array = AddRandomInArray(20);
             DisplayArray(array);
             Console.WriteLine();
-            SwapArray(array);
+            FlipArray(array);
             DisplayArray(array);
 
         }
@@ -108,10 +108,9 @@ namespace HomeWork4
         public int FindTheMinimumNumberInAnArray(int[] array)
         {
             int min = array[0];
-            if (array.Length == 0)
-            {
-                throw new IndexOutOfRangeException("Передан пустой массив");
-            }
+
+            ThrowErrorToEmptyArray(array.Length);
+
 
             foreach (int element in array)
             {
@@ -125,10 +124,7 @@ namespace HomeWork4
         public int FindTheMaximumNumberInAnArray(int[] array)
         {
             int max = array[0];
-            if (array.Length == 0)
-            {
-                throw new IndexOutOfRangeException("Передан пустой массив");
-            }
+            ThrowErrorToEmptyArray(array.Length);
 
 
 
@@ -143,11 +139,20 @@ namespace HomeWork4
             }
             return max;
         }
+
+        public void ThrowErrorToEmptyArray(int length)
+        {
+            if (length == 0)
+            {
+                throw new IndexOutOfRangeException("Передан пустой массив");
+            }
+        }
+
         public int FindTheMinimumIndexInAnArray(int[] array)
         {
             int min = array[0];
             int minIn = 0;
-
+            ThrowErrorToEmptyArray(array.Length);
 
 
 
@@ -166,6 +171,7 @@ namespace HomeWork4
             int max = array[0];
             int maxIn = 0;
 
+            ThrowErrorToEmptyArray(array.Length);
 
 
             for (int index = 0; index < array.Length; index++)
@@ -182,6 +188,7 @@ namespace HomeWork4
         {
             int oddIn = 0;
 
+            ThrowErrorToEmptyArray(array.Length);
 
 
             for (int index = 0; index < array.Length; index++)
@@ -194,8 +201,10 @@ namespace HomeWork4
             }
             return oddIn;
         }
-        public void SwapArray(int[] array)
+        public void FlipArray(int[] array)
         {
+            ThrowErrorToEmptyArray(array.Length);
+
             int endArray = array.Length - 1;
             int temp = 0;
             int halfArray = array.Length / 2;
@@ -228,6 +237,7 @@ namespace HomeWork4
             int oddEq = 0;
 
 
+            ThrowErrorToEmptyArray(array.Length);
 
 
             for (int index = 0; index < array.Length; index++)
@@ -245,6 +255,7 @@ namespace HomeWork4
         public void SwapParts(int[] array)
         {
 
+            ThrowErrorToEmptyArray(array.Length);
 
 
 
@@ -263,6 +274,8 @@ namespace HomeWork4
 
         public void BubbleSort(int[] array)
         {
+            ThrowErrorToEmptyArray(array.Length);
+
             bool test = true;
             int n = 0;
             while (test)
@@ -286,6 +299,8 @@ namespace HomeWork4
         }
         public void InsertSort(int[] array)
         {
+            ThrowErrorToEmptyArray(array.Length);
+
             int max = 0;
             int endAr = array.Length - 1;
 

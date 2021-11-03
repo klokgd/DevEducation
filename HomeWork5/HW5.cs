@@ -48,7 +48,7 @@ namespace HomeWork5
         public void SolveTask6()
         {
             int[,] array = AddRandomInArray(6, 6);
-           
+
             Console.WriteLine("Транспонированная матрица:");
 
             TransposeMatrix(array);
@@ -66,10 +66,10 @@ namespace HomeWork5
 
         }
 
-       
-
         public int FindTheMinimumNumberInAnArray(int[,] array)
         {
+            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+
             int min = array[0, 0];
 
             for (int i = 0; i < array.GetLength(0); i++)
@@ -88,6 +88,8 @@ namespace HomeWork5
         }
         public int FindTheMaximumNumberInAnArray(int[,] array)
         {
+            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+
             int max = array[0, 0];
 
             for (int i = 0; i < array.GetLength(0); i++)
@@ -106,6 +108,8 @@ namespace HomeWork5
         }
         public int[] FindTheMinimumIndexInAnArray(int[,] array)
         {
+            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+
             int min = array[0, 0];
             int minI = 0;
             int minJ = 0;
@@ -127,6 +131,8 @@ namespace HomeWork5
         }
         public int[] FindTheMaximumIndexInAnArray(int[,] array)
         {
+            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+
             int max = array[0, 0];
             int[] inArray = new int[2];
             for (int i = 0; i < array.GetLength(0); i++)
@@ -147,6 +153,8 @@ namespace HomeWork5
 
         public int FindFearOfNeighbors(int[,] array)
         {
+            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+
             int testIn = array[0, 0];
             int fearOfNeighbors = 0;
 
@@ -164,6 +172,8 @@ namespace HomeWork5
         }
         public void TransposeMatrix(int[,] array)
         {
+            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+
             int n = 0;
             int x = 0;
 
@@ -190,6 +200,7 @@ namespace HomeWork5
             int[,] array = new int[a, b];
             Random rnd = new Random();
 
+
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
@@ -202,6 +213,14 @@ namespace HomeWork5
                 Console.WriteLine();
             }
             return array;
+        }
+
+        public void ThrowErrorToEmptyArray(int i, int j)
+        {
+            if (i == 1 && j == 0)
+            {
+                throw new IndexOutOfRangeException("Передан пустой массив");
+            }
         }
 
 
