@@ -246,24 +246,14 @@ namespace Lists
 
         public void RemoveLast()
         {
-            TestIfEmptyArray();
-
-            int[] tempAr = new int[RealLength - 1];
-
-            for (int i = 0; i < tempAr.Length; i++)
-            {
-                tempAr[i] = _array[i];
-            }
-            _array = tempAr;
-
-            RealLength--;
-            DecreaseLengthArray(1);
+            RemoveAt(RealLength - 1);
 
         }
 
         public void RemoveAt(int idx)
         {
             TestErrorId(idx);
+            TestIfEmptyArray();
 
             int[] tempAr = new int[RealLength - 1];
 
@@ -279,29 +269,18 @@ namespace Lists
         public void RemoveFirstMultiple(int n)
         {
 
-            int[] tempAr = new int[RealLength - n];
-
-            for (int i = 0; i < tempAr.Length; i++)
+            for (int i = 0; i < n; i++)
             {
-                tempAr[i] = _array[n + i];
+                RemoveAt(0);
             }
-
-            _array = tempAr;
-
-            RealLength -= n;
         }
         public void RemoveLastMultiple(int n)
         {
-            int[] tempAr = new int[RealLength - n];
-
-            for (int i = 0; i < tempAr.Length; i++)
+            for (int i = 0; i < n; i++)
             {
-                tempAr[i] = _array[i];
+                RemoveAt(RealLength - 1);
+
             }
-
-            _array = tempAr;
-
-            RealLength -= n;
         }
 
         public void RemoveAtMultiple(int idx, int n)
@@ -312,16 +291,10 @@ namespace Lists
 
             }
 
-            //for (int i = 0; i < n; i++)
-            //{
-            //    _array[idx + i] = _array[idx + n + i];
-            //}
+
             for (int i = 0; i < n; i++)
             {
-                //for (int j = idx; j < RealLength; j++)
-                //{
-                //    _array[j] = _array[j + 1];
-                //}
+
                 RemoveAt(idx);
             }
 
@@ -350,7 +323,7 @@ namespace Lists
 
             while (idx >= 0)
             {
-              
+
                 RemoveAt(idx);
                 idx = IndexOf(val);
                 amountVal++;
