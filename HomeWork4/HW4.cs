@@ -109,7 +109,7 @@ namespace HomeWork4
         {
             int min = array[0];
 
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
             foreach (int element in array)
@@ -124,7 +124,7 @@ namespace HomeWork4
         public int FindTheMaximumNumberInAnArray(int[] array)
         {
             int max = array[0];
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
 
@@ -140,7 +140,7 @@ namespace HomeWork4
             return max;
         }
 
-        public void ThrowErrorToEmptyArray(int length)
+        public void TestIfEmptyArray(int length)
         {
             if (length == 0)
             {
@@ -152,7 +152,7 @@ namespace HomeWork4
         {
             int min = array[0];
             int minIn = 0;
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
 
@@ -171,7 +171,7 @@ namespace HomeWork4
             int max = array[0];
             int maxIn = 0;
 
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
             for (int index = 0; index < array.Length; index++)
@@ -188,7 +188,7 @@ namespace HomeWork4
         {
             int oddIn = 0;
 
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
             for (int index = 0; index < array.Length; index++)
@@ -203,7 +203,7 @@ namespace HomeWork4
         }
         public void FlipArray(int[] array)
         {
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
             int endArray = array.Length - 1;
             int temp = 0;
@@ -237,7 +237,7 @@ namespace HomeWork4
             int oddEq = 0;
 
 
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
             for (int index = 0; index < array.Length; index++)
@@ -255,7 +255,7 @@ namespace HomeWork4
         public void SwapParts(int[] array)
         {
 
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
 
 
@@ -274,7 +274,7 @@ namespace HomeWork4
 
         public void BubbleSort(int[] array)
         {
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
             bool test = true;
             int n = 0;
@@ -299,7 +299,7 @@ namespace HomeWork4
         }
         public void InsertSort(int[] array)
         {
-            ThrowErrorToEmptyArray(array.Length);
+            TestIfEmptyArray(array.Length);
 
             int max = 0;
             int endAr = array.Length - 1;

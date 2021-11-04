@@ -105,8 +105,10 @@ namespace Lists
         }
         public void AddLast(LinkedList list)
         {
-            _tail.Next = list._head;
-            _tail = list._tail;
+            LinkedList cloneList = Clone(list);
+
+            _tail.Next = cloneList._head;
+            _tail = cloneList._tail;
 
             //for (int i = 0; i < val.Length; i++)
             //{
@@ -118,8 +120,8 @@ namespace Lists
 
         public void AddAt(int idx, int val)
         {
-            ErrorIdx(idx);
-            Node current = FindIdx(idx);
+            ThrowErrorId(idx);
+            Node current = FindIdx(idx - 1);
 
 
             Node addNumber = new Node(val);
@@ -139,21 +141,24 @@ namespace Lists
 
         public void AddAt(int idx, LinkedList list)
         {
-            Node current = FindIdx(idx);
+            Node current = FindIdx(idx - 1);
+            LinkedList cloneList = Clone(list);
+            Node value = cloneList._head;
+            Node secondPart = new Node(0);
             if (idx == 0)
             {
-                AddFirst(list);
+                AddFirst(cloneList);
             }
             else
-            {
-                for (int j = 0; j < list.GetLength(); j++)
+            {   
+                secondPart = current.Next;
+                current.Next = value;
+                while (current.Next != null)
                 {
-
-                    //Node addNumber = new Node(val[j]);
-                    //addNumber.Next = current.Next;
-                    //current.Next = addNumber;
-                    //current = current.Next;
+                    current = current.Next;
                 }
+
+                current.Next = secondPart;
             }
 
         }
@@ -161,33 +166,43 @@ namespace Lists
         public void Set(int idx, int val)
         {
             Node current = FindIdx(idx);
+            current.Value = val;
 
-            Node newNumber = new Node(val);
-            newNumber.Next = current.Next.Next;
-            current.Next = newNumber;
+            //Node newNumber = new Node(val);
+            //newNumber.Next = current.Next.Next;
+            //current.Next = newNumber;
 
 
         }
 
         public void RemoveFirst()
         {
+            ThrowErrorToEmptyArray();
             _head = _head.Next;
         }
+
         public void RemoveLast()
         {
             Node current = _head;
-            while (current.Next.Next != null)
+            if (current.Next == null)
             {
-                current = current.Next;
-
+                RemoveFirst();
             }
-            current.Next = null;
+            else
+            {
+                while (current.Next.Next != null)
+                {
+                    current = current.Next;
 
+                }
+                current.Next = null;
+                _tail = current;
+            }
         }
 
         public void RemoveAt(int idx)
         {
-            Node current = FindIdx(idx);
+            Node current = FindIdx(idx - 1);
 
             if (idx == 0)
             {
@@ -205,21 +220,32 @@ namespace Lists
 
         public void RemoveFirstMultiple(int n)
         {
-            Node current = FindIdx(n);
+            Node current = FindIdx(n - 1);
             _head = current.Next;
         }
 
         public void RemoveLastMultiple(int n)
         {
-            Node current = FindIdx(n);
-            current.Next = null;
+            int interval = GetLength() - n;
+            if (interval == 0)
+            {
+                RemoveFirst();
+                _tail = _head;
+            }
+            else
+            {
+                Node current = FindIdx(interval - 1);
+                current.Next = null;
+                _tail = current;
+            }
         }
 
         public void RemoveAtMultiple(int idx, int n)
         {
-            ErrorIdx(idx);
+            int testLength = idx + n;
+            ThrowErrorId(testLength);
 
-            Node current = FindIdx(idx);
+            Node current = FindIdx(idx - 1);
 
             Node interval = _head;
 
@@ -242,15 +268,27 @@ namespace Lists
         {
             Node current = _head;
             int index = 0;
+
+
             while (current.Value != val)
             {
                 current = current.Next;
                 index++;
+                if (current.Next == null && current.Value != val)
+                {
+                    throw new ArgumentException("Такого значения не найдено");
+                }
             }
 
-            Node tempCurrent = FindIdx(index);
-            tempCurrent.Next = tempCurrent.Next.Next;
-
+            if (index == 0)
+            {
+                RemoveFirst();
+            }
+            else
+            {
+                Node tempCurrent = FindIdx(index - 1);
+                tempCurrent.Next = tempCurrent.Next.Next;
+            }
             return index;
         }
         public void RemoveAll(int val)
@@ -281,7 +319,7 @@ namespace Lists
                     index++;
                 }
 
-                Node tempCurrent = FindIdx(index);
+                Node tempCurrent = FindIdx(index - 1);
                 tempCurrent.Next = tempCurrent.Next.Next;
             }
 
@@ -318,8 +356,8 @@ namespace Lists
             {
                 if (current.Value == val)
                 {
-                    break;
                     index = i;
+                    break;
 
                 }
                 current = current.Next;
@@ -342,7 +380,7 @@ namespace Lists
         public int Get(int idx)
         {
             int value = 0;
-            ErrorIdx(idx);
+            ThrowErrorId(idx);
 
             Node current = _head;
 
@@ -460,15 +498,6 @@ namespace Lists
 
                 }
             }
-
-
-            //for (int i = 0; i < tempAr.Length; i++)
-            //{
-            //    current.Value = tempAr[i];
-            //    current = current.Next;
-
-            //}
-
         }
         public void SortDesc()
         {
@@ -493,22 +522,13 @@ namespace Lists
                     current = current.Next;
                 }
                 n = interval.Value;
-                current = FindIdx(maxIndex + 1);
+                current = FindIdx(maxIndex);
                 interval.Value = maxValue;
                 current.Value = n;
 
                 interval = interval.Next;
             }
 
-            //Node current = _head;
-
-            //for (int i = 0; i < tempAr.Length; i++)
-            //{
-            //    current.Value = tempAr[i];
-            //    current = current.Next;
-
-            //}
-            //;
         }
 
         public void Reverse()
@@ -532,10 +552,10 @@ namespace Lists
 
         public Node FindIdx(int idx)
         {
-            ErrorIdx(idx);
+            ThrowErrorId(idx);
             Node current = _head;
 
-            for (int i = 0; i < idx - 1; i++)
+            for (int i = 0; i < idx; i++)
             {
 
                 current = current.Next;
@@ -544,11 +564,20 @@ namespace Lists
             return current;
         }
 
-        public void ErrorIdx(int idx)
+        public void ThrowErrorId(int idx)
         {
             if (idx > GetLength())
             {
                 throw new IndexOutOfRangeException("Такого ID нет в списке");
+            }
+        }
+
+        public void ThrowErrorToEmptyArray()
+        {
+            if ((GetLength() - 1) < 0)
+            {
+                throw new IndexOutOfRangeException("Ошибка! Передан пустой массив");
+
             }
         }
     }

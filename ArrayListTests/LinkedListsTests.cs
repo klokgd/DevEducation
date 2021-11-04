@@ -29,8 +29,7 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        [TestCase(new int[] { }, 5, new int[] { 5 })]
-       
+
 
         [TestCase(new int[] { 1, 2, 3 }, 4, new int[] { 4, 1, 2, 3 })]
         [TestCase(new int[] { 1, 2, 3, 1 }, 4, new int[] { 4, 1, 2, 3, 1 })]
@@ -77,8 +76,8 @@ namespace List.Tests
             //arrayToTest.AddAt(idx, arrayToAdd);
 
             // act
+            arrayToTest.AddAt(idx, listToAdd);
             int[] actual = arrayToTest.ToArray();
-
             // assert
             Assert.AreEqual(expected, actual);
 
@@ -104,7 +103,7 @@ namespace List.Tests
 
 
         }
-      
+
 
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5 }, new int[] { 4, 5, 1, 2, 3 })]
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 4, 5, 6, 1, 2, 3 })]
@@ -138,9 +137,6 @@ namespace List.Tests
 
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5 }, new int[] { 1, 2, 3, 4, 5 })]
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 1, 2, 3, 4, 5, 6 })]
-        [TestCase(new int[] { }, new int[] { }, new int[] { })]
-        [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
-        [TestCase(new int[] { 1, 2, 3 }, new int[] { }, new int[] { 1, 2, 3 })]
         public void AddLastListTests(int[] array, int[] value, int[] expected)
         {
             // arrange
@@ -218,7 +214,7 @@ namespace List.Tests
         [TestCase(new int[] { 1, 2, 3, 1, 5 }, new int[] { 1, 2, 3, 1 })]
         [TestCase(new int[] { 5, 5, 5 }, new int[] { 5, 5 })]
         [TestCase(new int[] { 1 }, new int[] { })]
-        public void RemoveLasttTests(int[] array, int[] expected)
+        public void RemoveLastTests(int[] array, int[] expected)
         {
             // arrange
             LinkedList arrayToTest = new LinkedList(array);
@@ -329,6 +325,8 @@ namespace List.Tests
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 0, new int[] { 1, 2, 4, 5, 6, 6 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 4, new int[] { 1, 2 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 0, 4, new int[] { 6, 6 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 1, 5, new int[] { 1 })]
+
         public void RemoveAtMultipleTests(int[] array, int idx, int n, int[] expected)
         {
             // arrange
@@ -343,7 +341,7 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 1, 5, new int[] { 6, 6 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 5, new int[] { 6, 6 })]
         public void RemoveAtMultipleNegativeTests(int[] array, int idx, int n, int[] expected)
         {
             // arrange
@@ -357,8 +355,7 @@ namespace List.Tests
         [TestCase(new int[] { 1, 4, 5, }, 4, new int[] { 1, 5 })]
         [TestCase(new int[] { 1, 4, 5, 4 }, 4, new int[] { 1, 5, 4 })]
         [TestCase(new int[] { 1, 4, 5, 4, 4 }, 4, new int[] { 1, 5, 4, 4 })]
-        [TestCase(new int[] { 1, 4, 5, 4, 4 }, 6, new int[] { 1, 4, 5, 4, 4 })]
-        [TestCase(new int[] { 1, 4, 5, 4, 4 }, 5, new int[] { 1, 4, 5, 4, 4 })]
+        [TestCase(new int[] { 1, 4, 5, 4, 4 }, 5, new int[] { 1, 4, 4, 4 })]
         public void RemoveFirstValueTests(int[] array, int val, int[] expected)
         {
             // arrange
@@ -373,20 +370,18 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        [TestCase(new int[] { 1, 4, 5, 4, 4 }, 6, -1)]
-        public void RemoveFirstValueNegativeTests(int[] array, int val, int expected)
+        [TestCase(new int[] { 1, 4, 5, 4, 4 }, 6, new int[] { 1, 4, 5, 4, 4 })]
+        public void RemoveFirstValueNegativeTests(int[] array, int val, int[] expected)
         {
             // arrange
             LinkedList arrayToTest = new LinkedList(array);
 
-            arrayToTest.RemoveFirst(val);
-            // act
-            int actual = arrayToTest.RemoveFirst(val);
+            Assert.Throws(typeof(ArgumentException), () => arrayToTest.RemoveFirst(val));
 
-            // assert
-            Assert.AreEqual(expected, actual);
 
         }
+
+
         [TestCase(new int[] { 5, 5, 5 }, 5, 0)]
         [TestCase(new int[] { 1 }, 1, 0)]
         [TestCase(new int[] { 1, 4, 5, }, 4, 1)]
@@ -573,7 +568,7 @@ namespace List.Tests
             // assert
             Assert.AreEqual(expected, actual);
 
-        } 
+        }
         [TestCase(new int[] { 1, 4, 3, 2, 5, 7 }, new int[] { 7, 5, 2, 3, 4, 1 })]
         [TestCase(new int[] { 1, 4, 3, 6, 2, 5, 7 }, new int[] { 7, 5, 2, 6, 3, 4, 1 })]
         public void ReverseTests(int[] array, int[] expected)

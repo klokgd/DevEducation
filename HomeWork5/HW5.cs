@@ -68,7 +68,7 @@ namespace HomeWork5
 
         public int FindTheMinimumNumberInAnArray(int[,] array)
         {
-            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+            TestIfEmptyArray(array.GetLength(0), array.GetLength(1));
 
             int min = array[0, 0];
 
@@ -88,7 +88,7 @@ namespace HomeWork5
         }
         public int FindTheMaximumNumberInAnArray(int[,] array)
         {
-            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+            TestIfEmptyArray(array.GetLength(0), array.GetLength(1));
 
             int max = array[0, 0];
 
@@ -108,7 +108,7 @@ namespace HomeWork5
         }
         public int[] FindTheMinimumIndexInAnArray(int[,] array)
         {
-            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+            TestIfEmptyArray(array.GetLength(0), array.GetLength(1));
 
             int min = array[0, 0];
             int minI = 0;
@@ -131,7 +131,7 @@ namespace HomeWork5
         }
         public int[] FindTheMaximumIndexInAnArray(int[,] array)
         {
-            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+            TestIfEmptyArray(array.GetLength(0), array.GetLength(1));
 
             int max = array[0, 0];
             int[] inArray = new int[2];
@@ -153,7 +153,7 @@ namespace HomeWork5
 
         public int FindFearOfNeighbors(int[,] array)
         {
-            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+            TestIfEmptyArray(array.GetLength(0), array.GetLength(1));
 
             int testIn = array[0, 0];
             int fearOfNeighbors = 0;
@@ -172,7 +172,7 @@ namespace HomeWork5
         }
         public void TransposeMatrix(int[,] array)
         {
-            ThrowErrorToEmptyArray(array.GetLength(0), array.GetLength(1));
+            TestIfEmptyArray(array.GetLength(0), array.GetLength(1));
 
             int n = 0;
             int x = 0;
@@ -215,7 +215,7 @@ namespace HomeWork5
             return array;
         }
 
-        public void ThrowErrorToEmptyArray(int i, int j)
+        public void TestIfEmptyArray(int i, int j)
         {
             if (i == 1 && j == 0)
             {

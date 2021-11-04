@@ -20,7 +20,7 @@ namespace List.Tests
         {
             // arrange
             ArrayList arrayToTest = new ArrayList(array);
-            arrayToTest.UpSize();
+            arrayToTest.ExtendLengthArray();
             arrayToTest.AddLast(value);
             int[] actual = arrayToTest.ToArray();
 
@@ -40,7 +40,7 @@ namespace List.Tests
             // act
 
             // assert
-            Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.UpSize());
+            Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.ExtendLengthArray());
 
         }
 
@@ -50,7 +50,7 @@ namespace List.Tests
         {
             // arrange
             ArrayList arrayToTest = new ArrayList(array);
-            arrayToTest.UpSize();
+            arrayToTest.ExtendLengthArray();
             arrayToTest.AddFirst(value);
             int[] actual = arrayToTest.ToArray();
 
@@ -81,6 +81,7 @@ namespace List.Tests
         [TestCase(new int[] { 1, 2, 3, 1 }, 2, new int[] { 6, 6, 6 }, new int[] { 1, 2, 6, 6, 6, 3, 1 })]
         [TestCase(new int[] { 1, 2, 3, 1 }, 0, new int[] { 6, 6, 6 }, new int[] { 6, 6, 6, 1, 2, 3, 1 })]
         [TestCase(new int[] { 1, 2, 3, 1 }, 4, new int[] { 6, 6, 6 }, new int[] { 1, 2, 3, 1, 6, 6, 6 })]
+        [TestCase(new int[] { 1, 2, 3, 1, 6, 9, 10 }, 4, new int[] { 6, 6, 6 }, new int[] { 1, 2, 3, 1, 6, 6, 6, 6, 9, 10 })]
         public void AddAtListTests(int[] array, int idx, int[] value, int[] expected)
         {
             // arrange
@@ -120,7 +121,7 @@ namespace List.Tests
         {
             // arrange
             ArrayList arrayToTest = new ArrayList(array);
-            Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.UpSize());
+            Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.ExtendLengthArray());
 
 
         }
@@ -325,6 +326,7 @@ namespace List.Tests
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 0, new int[] { 1, 2, 4, 5, 6, 6 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 4, new int[] { 1, 2 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 0, 4, new int[] { 6, 6 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 1, new int[] { 1, 2, 5, 6, 6 })]
         public void RemoveAtMultipleTests(int[] array, int idx, int n, int[] expected)
         {
             // arrange
@@ -568,7 +570,7 @@ namespace List.Tests
             // assert
             Assert.AreEqual(expected, actual);
 
-        } 
+        }
         [TestCase(new int[] { 1, 4, 3, 2, 5, 7 }, new int[] { 7, 5, 2, 3, 4, 1 })]
         [TestCase(new int[] { 1, 4, 3, 6, 2, 5, 7 }, new int[] { 7, 5, 2, 6, 3, 4, 1 })]
         public void ReverseTests(int[] array, int[] expected)
