@@ -2,7 +2,7 @@
 
 namespace Lists
 {
-    public class ArrayList
+    public class ArrayList : InterfaceForLists
     {
         public int RealLength { get; private set; }
         private int[] _array;

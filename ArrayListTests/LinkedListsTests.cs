@@ -288,6 +288,7 @@ namespace List.Tests
         [TestCase(new int[] { 5, 5, 5 }, 2, new int[] { 5 })]
         [TestCase(new int[] { 1 }, 1, new int[] { })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 4, new int[] { 1, 2 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 6, new int[] { })]
         public void RemoveLastMultipleTests(int[] array, int n, int[] expected)
         {
             // arrange
@@ -306,6 +307,8 @@ namespace List.Tests
         [TestCase(new int[] { 1, 2, 5, 5, 6, 6 }, 5, new int[] { 1, 2, 6, 6 })]
         [TestCase(new int[] { 1, 2, 5, 5, 6, 6 }, 6, new int[] { 1, 2, 5, 5 })]
         [TestCase(new int[] { 1, 2, 5, 5, 6, 6, 5 }, 5, new int[] { 1, 2, 6, 6 })]
+        [TestCase(new int[] { 1, 2, 5, 1, 6, 5 }, 1, new int[] { 2, 5, 6, 5 })]
+        [TestCase(new int[] { 1, 1, 5, 1, 6, 5 }, 1, new int[] {5, 6, 5 })]
         public void RemoveAllTests(int[] array, int n, int[] expected)
         {
             // arrange
@@ -370,16 +373,16 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        [TestCase(new int[] { 1, 4, 5, 4, 4 }, 6, new int[] { 1, 4, 5, 4, 4 })]
-        public void RemoveFirstValueNegativeTests(int[] array, int val, int[] expected)
-        {
-            // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+        //[TestCase(new int[] { 1, 4, 5, 4, 4 }, 6, new int[] { 1, 4, 5, 4, 4 })]
+        //public void RemoveFirstValueNegativeTests(int[] array, int val, int[] expected)
+        //{
+        //    // arrange
+        //    LinkedList arrayToTest = new LinkedList(array);
 
-            Assert.Throws(typeof(ArgumentException), () => arrayToTest.RemoveFirst(val));
+        //    Assert.Throws(typeof(ArgumentException), () => arrayToTest.RemoveFirst(val));
 
 
-        }
+        //}
 
 
         [TestCase(new int[] { 5, 5, 5 }, 5, 0)]

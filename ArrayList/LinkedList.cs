@@ -4,7 +4,7 @@ namespace Lists
 {
 
 
-    public class LinkedList
+    public class LinkedList : InterfaceForLists
     {
         private Node _tail;
         private Node _head;
@@ -22,10 +22,8 @@ namespace Lists
         }
         public LinkedList(int[] value)
         {
-            if (value.Length < 1)
-            {
-                throw new IndexOutOfRangeException("Передан пустой массив");
-            }
+           
+            TestErrorToEmptyArray();
             _head = new Node(value[0]);
             Node current = _head;
 
@@ -87,12 +85,7 @@ namespace Lists
 
             listClone._tail.Next = _head;
             _head = listClone._head;
-            //for (int i = 0; i < val.Length; i++)
-            //{
-            //    Node node = new Node(val[i]);
-            //    node.Next = _head;
-            //    _head = node;
-            //}
+
 
 
         }
@@ -110,17 +103,12 @@ namespace Lists
             _tail.Next = cloneList._head;
             _tail = cloneList._tail;
 
-            //for (int i = 0; i < val.Length; i++)
-            //{
-            //    Node node = new Node(val[i]);
-            //    _tail.Next = node;
-            //    _tail = _tail.Next;
-            //}
+
         }
 
         public void AddAt(int idx, int val)
         {
-            ThrowErrorId(idx);
+            TestErrorId(idx);
             Node current = FindIdx(idx - 1);
 
 
@@ -135,6 +123,8 @@ namespace Lists
 
                 current.Next = addNumber;
             }
+            GetTail();
+
         }
 
 
@@ -150,7 +140,7 @@ namespace Lists
                 AddFirst(cloneList);
             }
             else
-            {   
+            {
                 secondPart = current.Next;
                 current.Next = value;
                 while (current.Next != null)
@@ -160,6 +150,8 @@ namespace Lists
 
                 current.Next = secondPart;
             }
+            GetTail();
+
 
         }
 
@@ -177,8 +169,16 @@ namespace Lists
 
         public void RemoveFirst()
         {
-            ThrowErrorToEmptyArray();
-            _head = _head.Next;
+            TestErrorToEmptyArray();
+            if (_head.Next == null)
+            {
+                _head = null;
+                _tail = _head;
+            }
+            else
+            {
+                _head = _head.Next;
+            }
         }
 
         public void RemoveLast()
@@ -212,6 +212,7 @@ namespace Lists
             {
                 current.Next = current.Next.Next;
             }
+            GetTail();
 
 
         }
@@ -229,7 +230,7 @@ namespace Lists
             int interval = GetLength() - n;
             if (interval == 0)
             {
-                RemoveFirst();
+                _head = null;
                 _tail = _head;
             }
             else
@@ -243,7 +244,7 @@ namespace Lists
         public void RemoveAtMultiple(int idx, int n)
         {
             int testLength = idx + n;
-            ThrowErrorId(testLength);
+            TestErrorId(testLength);
 
             Node current = FindIdx(idx - 1);
 
@@ -261,6 +262,8 @@ namespace Lists
             {
                 RemoveFirst();
             }
+            GetTail();
+
 
         }
 
@@ -268,61 +271,71 @@ namespace Lists
         {
             Node current = _head;
             int index = 0;
-
-
-            while (current.Value != val)
-            {
-                current = current.Next;
-                index++;
-                if (current.Next == null && current.Value != val)
-                {
-                    throw new ArgumentException("Такого значения не найдено");
-                }
-            }
-
-            if (index == 0)
+            if (current.Value == val)
             {
                 RemoveFirst();
+
             }
             else
             {
-                Node tempCurrent = FindIdx(index - 1);
-                tempCurrent.Next = tempCurrent.Next.Next;
+
+                while (current.Next != null)
+                {
+
+
+                    index++;
+                    if (current.Next.Value == val)
+                    {
+                        current.Next = current.Next.Next;
+                        break;
+                    }
+                    current = current.Next;
+                }
             }
             return index;
         }
-        public void RemoveAll(int val)
+
+        public void GetTail()
+        {
+            Node current = _head;
+
+            while (current.Next != null)
+            {
+                current = current.Next;
+                if (current.Next == null)
+                {
+                    _tail = current;
+                }
+            }
+        }
+
+        public int RemoveAll(int val)
         {
             Node current = _head;
             int qualityNumbers = 0;
-            int length = GetLength();
 
-            for (int i = 0; i < length; i++)
+            while (current != null && current.Next != null)
             {
-                if (current.Value == val)
+                while (current.Value == val)
                 {
+                    RemoveFirst();
+                    current = current.Next;
+                }
+                while (current.Next.Value == val)
+                {
+                    current.Next = current.Next.Next;
                     qualityNumbers++;
-
+                    if (current.Next == null)
+                    {
+                        break;
+                    }
                 }
                 current = current.Next;
             }
 
-            for (int i = 0; i < qualityNumbers; i++)
-            {
-                int index = 0;
 
-                current = _head;
-
-                while (current.Value != val)
-                {
-                    current = current.Next;
-                    index++;
-                }
-
-                Node tempCurrent = FindIdx(index - 1);
-                tempCurrent.Next = tempCurrent.Next.Next;
-            }
-
+            GetTail();
+            return qualityNumbers;
 
         }
 
@@ -380,7 +393,7 @@ namespace Lists
         public int Get(int idx)
         {
             int value = 0;
-            ThrowErrorId(idx);
+            TestErrorId(idx);
 
             Node current = _head;
 
@@ -498,6 +511,8 @@ namespace Lists
 
                 }
             }
+            GetTail();
+
         }
         public void SortDesc()
         {
@@ -528,6 +543,8 @@ namespace Lists
 
                 interval = interval.Next;
             }
+            GetTail();
+
 
         }
 
@@ -548,11 +565,13 @@ namespace Lists
             {
                 RemoveLast();
             }
+            GetTail();
+
         }
 
         public Node FindIdx(int idx)
         {
-            ThrowErrorId(idx);
+            TestErrorId(idx);
             Node current = _head;
 
             for (int i = 0; i < idx; i++)
@@ -564,7 +583,7 @@ namespace Lists
             return current;
         }
 
-        public void ThrowErrorId(int idx)
+        public void TestErrorId(int idx)
         {
             if (idx > GetLength())
             {
@@ -572,9 +591,9 @@ namespace Lists
             }
         }
 
-        public void ThrowErrorToEmptyArray()
+        public void TestErrorToEmptyArray()
         {
-            if ((GetLength() - 1) < 0)
+            if ((GetLength() - 1) <= 0)
             {
                 throw new IndexOutOfRangeException("Ошибка! Передан пустой массив");
 
