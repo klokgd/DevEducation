@@ -4,22 +4,24 @@ using System;
 
 namespace List.Tests
 {
-    public class LinkedListsTests
+    public class DoublyLinkedListTests
     {
-        private LinkedList _linklist;
+        private DoublyLinkedList _doublylinklist;
 
         [SetUp]
         public void Setup()
         {
-            _linklist = new LinkedList();
+            _doublylinklist = new DoublyLinkedList();
         }
 
-        [TestCase(new int[] { })]
-        public void ConstructorNegativeTests(int[] array)
+        [TestCase(new int[] { 1, 2, 3 }, 3)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 4)]
+        [TestCase(new int[] { 0 }, 1)]
+        public void GetLengthTests(int[] array, int expected)
         {
-            // arrange
-
-            Assert.Throws(typeof(ArgumentException), () => new LinkedList(array));
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
+            int actual = arrayToTest.GetLength();
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 4, new int[] { 1, 2, 3, 4 })]
@@ -27,7 +29,7 @@ namespace List.Tests
         public void AddLastTests(int[] array, int value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
             arrayToTest.AddLast(value);
             int[] actual = arrayToTest.ToArray();
 
@@ -44,7 +46,7 @@ namespace List.Tests
         public void AddFirstTests(int[] array, int value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
             arrayToTest.AddFirst(value);
             int[] actual = arrayToTest.ToArray();
 
@@ -62,7 +64,7 @@ namespace List.Tests
         public void AddAtTests(int[] array, int idx, int value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
             arrayToTest.AddAt(idx, value);
             int[] actual = arrayToTest.ToArray();
 
@@ -78,10 +80,9 @@ namespace List.Tests
         public void AddAtListTests(int[] array, int idx, int[] value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
-            LinkedList listToAdd = new LinkedList(value);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
+            DoublyLinkedList listToAdd = new DoublyLinkedList(value);
             int[] arrayToAdd = listToAdd.ToArray();
-            //arrayToTest.AddAt(idx, arrayToAdd);
 
             // act
             arrayToTest.AddAt(idx, listToAdd);
@@ -94,22 +95,17 @@ namespace List.Tests
         public void AddAtNegativeTests(int[] array, int idx, int value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
             Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.AddAt(idx, value));
 
 
         }
-        [TestCase(new int[] { 1, 2, 3, 1 }, 5, new int[] { 6, 6, 6 }, new int[] { 1, 2, 3, 1, 6, 6, 6 })]
-        public void AddAtListNegativeTests(int[] array, int idx, int[] value, int[] expected)
+        [TestCase(new int[] { })]
+        public void ConstructorNegativeTests(int[] array)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
-            LinkedList listToAdd = new LinkedList(value);
-            int[] arrayToAdd = listToAdd.ToArray();
 
-            //Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.AddAt(idx, arrayToAdd));
-
-
+            Assert.Throws(typeof(ArgumentException), () => new DoublyLinkedList(array));
         }
 
 
@@ -118,8 +114,8 @@ namespace List.Tests
         public void AddFirstListTests(int[] array, int[] value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
-            LinkedList listToAdd = new LinkedList(value);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
+            DoublyLinkedList listToAdd = new DoublyLinkedList(value);
             arrayToTest.AddFirst(listToAdd);
 
             // act
@@ -129,15 +125,15 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        
+
 
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5 }, new int[] { 1, 2, 3, 4, 5 })]
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 1, 2, 3, 4, 5, 6 })]
         public void AddLastListTests(int[] array, int[] value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
-            LinkedList listToAdd = new LinkedList(value);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
+            DoublyLinkedList listToAdd = new DoublyLinkedList(value);
             arrayToTest.AddLast(listToAdd);
 
             // act
@@ -147,7 +143,6 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-      
 
         [TestCase(new int[] { 1, 2, 3, 1 }, 0, 3, new int[] { 3, 2, 3, 1 })]
         [TestCase(new int[] { 1, 2, 3, 1 }, 3, 6, new int[] { 1, 2, 3, 6 })]
@@ -155,7 +150,7 @@ namespace List.Tests
         public void SetTests(int[] array, int idx, int value, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.Set(idx, value);
 
@@ -171,7 +166,7 @@ namespace List.Tests
         public void RemoveFirstTests(int[] array, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.RemoveFirst();
 
@@ -182,16 +177,15 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-       
+
 
         [TestCase(new int[] { 1, 2, 3, 1 }, new int[] { 1, 2, 3 })]
         [TestCase(new int[] { 1, 2, 3, 1, 5 }, new int[] { 1, 2, 3, 1 })]
         [TestCase(new int[] { 5, 5, 5 }, new int[] { 5, 5 })]
-        [TestCase(new int[] { 1 }, new int[] { })]
         public void RemoveLastTests(int[] array, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.RemoveLast();
 
@@ -202,16 +196,15 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        
 
         [TestCase(new int[] { 1, 2, 3, 1, 5 }, 2, new int[] { 1, 2, 1, 5 })]
         [TestCase(new int[] { 1, 2, 3, 1, 5 }, 4, new int[] { 1, 2, 3, 1 })]
-        [TestCase(new int[] { 5, 5, 5 }, 2, new int[] { 5, 5 })]
-        [TestCase(new int[] { 1 }, 0, new int[] { })]
+        [TestCase(new int[] { 1, 2, 3, 1, 5 }, 4, new int[] { 1, 2, 3, 1 })]
+        [TestCase(new int[] { 5, 5, 5, 6, 7, 8 }, 2, new int[] { 5, 5, 6, 7, 8 })]
         public void RemoveAtTests(int[] array, int idx, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.RemoveAt(idx);
 
@@ -226,7 +219,7 @@ namespace List.Tests
         public void RemoveAtNegativeTests(int[] array, int idx, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.RemoveAt(idx));
@@ -234,14 +227,31 @@ namespace List.Tests
         }
 
         [TestCase(new int[] { 5, 5, 5 }, 2, new int[] { 5 })]
-        [TestCase(new int[] { 1 }, 1, new int[] { })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 4, new int[] { 6, 6 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 3, new int[] { 5, 6, 6 })]
         public void RemoveFirstMultipleTests(int[] array, int n, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.RemoveFirstMultiple(n);
+
+            // act
+            int[] actual = arrayToTest.ToArray();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestCase(new int[] { 5, 5, 5 }, 2, new int[] { 5 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 4, new int[] { 1, 2 })]
+        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 6, new int[] { })]
+        public void RemoveLastMultipleTests(int[] array, int n, int[] expected)
+        {
+            // arrange
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
+
+            arrayToTest.RemoveLastMultiple(n);
 
             // act
             int[] actual = arrayToTest.ToArray();
@@ -254,37 +264,20 @@ namespace List.Tests
         public void RemoveLastMultipleNegativeTests(int[] array, int n, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             Assert.Throws(typeof(ArgumentException), () => arrayToTest.RemoveLastMultiple(n));
-        }
 
+
+        }
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 8, new int[] { })]
         public void RemoveFirstMultipleNegativeTests(int[] array, int n, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             Assert.Throws(typeof(ArgumentException), () => arrayToTest.RemoveFirstMultiple(n));
 
-
-        }
-        [TestCase(new int[] { 5, 5, 5 }, 2, new int[] { 5 })]
-        [TestCase(new int[] { 1 }, 1, new int[] { })]
-        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 4, new int[] { 1, 2 })]
-        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 6, new int[] { })]
-        public void RemoveLastMultipleTests(int[] array, int n, int[] expected)
-        {
-            // arrange
-            LinkedList arrayToTest = new LinkedList(array);
-
-            arrayToTest.RemoveLastMultiple(n);
-
-            // act
-            int[] actual = arrayToTest.ToArray();
-
-            // assert
-            Assert.AreEqual(expected, actual);
 
         }
 
@@ -292,11 +285,11 @@ namespace List.Tests
         [TestCase(new int[] { 1, 2, 5, 5, 6, 6 }, 6, new int[] { 1, 2, 5, 5 })]
         [TestCase(new int[] { 1, 2, 5, 5, 6, 6, 5 }, 5, new int[] { 1, 2, 6, 6 })]
         [TestCase(new int[] { 1, 2, 5, 1, 6, 5 }, 1, new int[] { 2, 5, 6, 5 })]
-        [TestCase(new int[] { 1, 1, 5, 1, 6, 5 }, 1, new int[] {5, 6, 5 })]
+        [TestCase(new int[] { 1, 1, 5, 1, 6, 5 }, 1, new int[] { 5, 6, 5 })]
         public void RemoveAllTests(int[] array, int n, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.RemoveAll(n);
 
@@ -309,8 +302,6 @@ namespace List.Tests
         }
 
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 2, new int[] { 1, 2, 6, 6 })]
-        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 1, 4, new int[] { 1, 6 })]
-        [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 1, 3, new int[] { 1, 6, 6 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 0, new int[] { 1, 2, 4, 5, 6, 6 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 2, 4, new int[] { 1, 2 })]
         [TestCase(new int[] { 1, 2, 4, 5, 6, 6 }, 0, 4, new int[] { 6, 6 })]
@@ -334,13 +325,12 @@ namespace List.Tests
         public void RemoveAtMultipleNegativeTests(int[] array, int idx, int n, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             Assert.Throws(typeof(IndexOutOfRangeException), () => arrayToTest.RemoveAtMultiple(idx, n));
 
         }
         [TestCase(new int[] { 5, 5, 5 }, 5, new int[] { 5, 5 })]
-        [TestCase(new int[] { 1 }, 1, new int[] { })]
         [TestCase(new int[] { 1, 4, 5, }, 4, new int[] { 1, 5 })]
         [TestCase(new int[] { 1, 4, 5, 4 }, 4, new int[] { 1, 5, 4 })]
         [TestCase(new int[] { 1, 4, 5, 4, 4 }, 4, new int[] { 1, 5, 4, 4 })]
@@ -348,7 +338,7 @@ namespace List.Tests
         public void RemoveFirstValueTests(int[] array, int val, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.RemoveFirst(val);
 
@@ -359,27 +349,17 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
 
         }
-        //[TestCase(new int[] { 1, 4, 5, 4, 4 }, 6, new int[] { 1, 4, 5, 4, 4 })]
-        //public void RemoveFirstValueNegativeTests(int[] array, int val, int[] expected)
-        //{
-        //    // arrange
-        //    LinkedList arrayToTest = new LinkedList(array);
 
-        //    Assert.Throws(typeof(ArgumentException), () => arrayToTest.RemoveFirst(val));
-
-
-        //}
 
 
         [TestCase(new int[] { 5, 5, 5 }, 5, 0)]
-        [TestCase(new int[] { 1 }, 1, 0)]
         [TestCase(new int[] { 1, 4, 5, }, 4, 1)]
         [TestCase(new int[] { 1, 4, 5, 4 }, 4, 1)]
         [TestCase(new int[] { 1, 4, 5, 4, 4 }, 5, 2)]
         public void RemoveFirstValueReturnTests(int[] array, int val, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -394,7 +374,7 @@ namespace List.Tests
         public void ContainsTests(int[] array, int val, bool expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -409,7 +389,7 @@ namespace List.Tests
         public void IndexOfTests(int[] array, int val, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -424,7 +404,7 @@ namespace List.Tests
         public void GetFirstTests(int[] array, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -439,7 +419,7 @@ namespace List.Tests
         public void GetLastTests(int[] array, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -454,7 +434,7 @@ namespace List.Tests
         public void GetTests(int[] array, int val, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -469,7 +449,7 @@ namespace List.Tests
         public void MaxTests(int[] array, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -484,7 +464,7 @@ namespace List.Tests
         public void MinTests(int[] array, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -500,7 +480,7 @@ namespace List.Tests
         public void IndexOfMaxTests(int[] array, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -515,7 +495,7 @@ namespace List.Tests
         public void IndexOfMinTests(int[] array, int expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
 
             // act
@@ -527,14 +507,11 @@ namespace List.Tests
         }
 
         [TestCase(new int[] { 1, 4, 3, 2, 5 }, new int[] { 1, 2, 3, 4, 5 })]
-        [TestCase(new int[] { 1, 4, 3, 2, 5, 7, 10, 9, 8 }, new int[] { 1, 2, 3, 4, 5, 7, 8, 9, 10 })]
-        [TestCase(new int[] { 0, 4, 3 }, new int[] { 0, 3, 4 })]
-        [TestCase(new int[] { 9, 4, 3, 2 }, new int[] { 2,3,4,9 })]
-
+        [TestCase(new int[] { 1, 4, 3, 2, 5, 7 }, new int[] { 1, 2, 3, 4, 5, 7 })]
         public void SortTests(int[] array, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.Sort();
 
@@ -547,11 +524,10 @@ namespace List.Tests
         }
         [TestCase(new int[] { 1, 4, 3, 2, 5 }, new int[] { 5, 4, 3, 2, 1 })]
         [TestCase(new int[] { 1, 4, 3, 2, 5, 7 }, new int[] { 7, 5, 4, 3, 2, 1 })]
-        [TestCase(new int[] { 1, 4, 3, 2 }, new int[] { 4, 3, 2, 1 })]
         public void SortDescTests(int[] array, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.SortDesc();
 
@@ -564,11 +540,12 @@ namespace List.Tests
         }
         [TestCase(new int[] { 1, 4, 3, 2, 5, 7 }, new int[] { 7, 5, 2, 3, 4, 1 })]
         [TestCase(new int[] { 1, 4, 3, 6, 2, 5, 7 }, new int[] { 7, 5, 2, 6, 3, 4, 1 })]
-        [TestCase(new int[] { 1, 2, 3, }, new int[] { 3, 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
+
         public void ReverseTests(int[] array, int[] expected)
         {
             // arrange
-            LinkedList arrayToTest = new LinkedList(array);
+            DoublyLinkedList arrayToTest = new DoublyLinkedList(array);
 
             arrayToTest.Reverse();
 

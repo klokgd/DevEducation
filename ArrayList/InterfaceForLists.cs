@@ -19,6 +19,7 @@ namespace Lists
         void RemoveAtMultiple(int idx, int n);
         int RemoveFirst(int val);
         int RemoveAll(int val);
+        bool Contains(int val);
         int IndexOf(int val);
         int GetFirst();
         int GetLast();
@@ -30,5 +31,6 @@ namespace Lists
         int IndexOfMin();
         void Sort();
         void SortDesc();
+
     }
 }

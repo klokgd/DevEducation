@@ -22,8 +22,11 @@ namespace Lists
         }
         public LinkedList(int[] value)
         {
-           
-            TestErrorToEmptyArray();
+            if (value.Length == 0)
+            {
+                throw new ArgumentException("Передан пустой массив");
+            }
+
             _head = new Node(value[0]);
             Node current = _head;
 
@@ -98,12 +101,10 @@ namespace Lists
         }
         public void AddLast(LinkedList list)
         {
-            LinkedList cloneList = Clone(list);
+            LinkedList listClone = Clone(list);
 
-            _tail.Next = cloneList._head;
-            _tail = cloneList._tail;
-
-
+            _tail.Next = listClone._head;
+            _tail = listClone._tail;
         }
 
         public void AddAt(int idx, int val)
@@ -123,7 +124,7 @@ namespace Lists
 
                 current.Next = addNumber;
             }
-            GetTail();
+            SetTail();
 
         }
 
@@ -150,8 +151,7 @@ namespace Lists
 
                 current.Next = secondPart;
             }
-            GetTail();
-
+            SetTail();
 
         }
 
@@ -159,12 +159,6 @@ namespace Lists
         {
             Node current = FindIdx(idx);
             current.Value = val;
-
-            //Node newNumber = new Node(val);
-            //newNumber.Next = current.Next.Next;
-            //current.Next = newNumber;
-
-
         }
 
         public void RemoveFirst()
@@ -212,7 +206,7 @@ namespace Lists
             {
                 current.Next = current.Next.Next;
             }
-            GetTail();
+            SetTail();
 
 
         }
@@ -221,8 +215,23 @@ namespace Lists
 
         public void RemoveFirstMultiple(int n)
         {
-            Node current = FindIdx(n - 1);
-            _head = current.Next;
+            int interval = GetLength() - n;
+
+            if (interval == 0)
+            {
+                _head = null;
+                _tail = _head;
+            }
+            else if (interval < 0)
+            {
+                throw new ArgumentException("Переданное число больше длинны листа");
+
+            }
+            else
+            {
+                Node current = FindIdx(n - 1);
+                _head = current.Next;
+            }
         }
 
         public void RemoveLastMultiple(int n)
@@ -232,6 +241,11 @@ namespace Lists
             {
                 _head = null;
                 _tail = _head;
+            }
+            else if (interval < 0)
+            {
+                throw new ArgumentException("Переданное число больше длинны листа");
+
             }
             else
             {
@@ -262,7 +276,7 @@ namespace Lists
             {
                 RemoveFirst();
             }
-            GetTail();
+            SetTail();
 
 
         }
@@ -295,7 +309,7 @@ namespace Lists
             return index;
         }
 
-        public void GetTail()
+        public void SetTail()
         {
             Node current = _head;
 
@@ -334,7 +348,7 @@ namespace Lists
             }
 
 
-            GetTail();
+            SetTail();
             return qualityNumbers;
 
         }
@@ -344,14 +358,14 @@ namespace Lists
             bool test = false;
 
             Node current = _head;
-            int length = GetLength();
 
 
-            for (int i = 0; i < length; i++)
+            while (current.Next != null)
             {
                 if (current.Value == val)
                 {
                     test = true;
+                    break;
                 }
                 current = current.Next;
             }
@@ -363,16 +377,15 @@ namespace Lists
 
             Node current = _head;
             int index = -1;
-            int length = GetLength();
-
-            for (int i = 0; i < length; i++)
+            int i = 0;
+            while (current.Next != null)
             {
                 if (current.Value == val)
                 {
                     index = i;
                     break;
-
                 }
+                i++;
                 current = current.Next;
             }
 
@@ -488,30 +501,30 @@ namespace Lists
 
         public void Sort()
         {
-            int[] tempAr = ToArray();
-            bool test = true;
-            int n = 0;
-            int index = GetLength();
+            int length = GetLength();
 
-            while (test)
+            Node interval = _head;
+            for (int i = 0; i < length; i++)
             {
-                test = false;
-                Node current = _head;
 
-                for (int i = 0; i < index - 1; i++)
+                interval = FindIdx(i);
+                Node current = interval.Next;
+                int minIndex = i;
+                int minValue = interval.Value;
+                for (int j = i + 1; j < length; j++)
                 {
-                    if (current != null && current.Next != null && current.Value > current.Next.Value)
+
+                    if (minValue > current.Value)
                     {
-                        n = current.Value;
-                        current.Value = current.Next.Value;
-                        current.Next.Value = n;
-                        test = true;
+                        minValue = current.Value;
+                        minIndex = j;
                     }
                     current = current.Next;
-
                 }
+                SwapNodes(i, minIndex);
+
             }
-            GetTail();
+            SetTail();
 
         }
         public void SortDesc()
@@ -519,11 +532,11 @@ namespace Lists
             int length = GetLength();
 
             Node interval = _head;
-            int n = 0;
             for (int i = 0; i < length; i++)
             {
-                Node current = interval.Next;
 
+                interval = FindIdx(i);
+                Node current = interval.Next;
                 int maxIndex = i;
                 int maxValue = interval.Value;
                 for (int j = i + 1; j < length; j++)
@@ -536,36 +549,73 @@ namespace Lists
                     }
                     current = current.Next;
                 }
-                n = interval.Value;
-                current = FindIdx(maxIndex);
-                interval.Value = maxValue;
-                current.Value = n;
+                SwapNodes(i, maxIndex);
 
-                interval = interval.Next;
             }
-            GetTail();
+            SetTail();
 
 
+        }
+
+        public void SwapNodes(int a, int b)
+        {
+            Node currentInterval = FindIdx(a);
+            Node currentMaxValue = FindIdx(b);
+            Node prevCurrentInterval = null;
+
+            if (a == b)
+            {
+                return;
+            }
+            if (a - 1 < 0)
+            {
+                prevCurrentInterval = null;
+
+            }
+            else
+            {
+                prevCurrentInterval = FindIdx(a - 1);
+
+            }
+
+            Node prevCurrentMaxValue = FindIdx(b - 1);
+
+
+            if (prevCurrentInterval != null)
+            {
+                prevCurrentInterval.Next = currentMaxValue;
+            }
+            else
+            {
+                _head = currentMaxValue;
+            }
+
+
+            prevCurrentMaxValue.Next = currentInterval;
+
+
+
+            Node temp = currentInterval.Next;
+            currentInterval.Next = currentMaxValue.Next;
+            currentMaxValue.Next = temp;
         }
 
         public void Reverse()
         {
             Node current = _head;
-            Node next = new Node(0);
-            Node prev = _head;
-            int index = GetLength();
+            Node tempValue = null;
 
-            for (int i = 0; i < index; i++)
+            while (current != null)
             {
-                AddFirst(current.Value);
+                Node temp = current.Next;
+                current.Next = tempValue;
+                tempValue = current;
+                current = temp;
 
-                current = current.Next;
             }
-            for (int i = 0; i < index; i++)
-            {
-                RemoveLast();
-            }
-            GetTail();
+            _head = tempValue;
+
+            SetTail();
 
         }
 
