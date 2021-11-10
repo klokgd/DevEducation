@@ -51,7 +51,7 @@ namespace Lists
         {
             int[] temp = _array;
             int newLength = 0;
-            TestIfEmptyArray();
+            ThrowErrorIfArrayEmpty();
             newLength = (_array.Length * 3) / 2 + 1;
             _array = new int[newLength];
             for (int i = 0; i < temp.Length; i++)
@@ -64,7 +64,7 @@ namespace Lists
         {
             int[] temp = _array;
             int newLength = 0;
-            TestIfEmptyArray();
+            ThrowErrorIfArrayEmpty();
             newLength = _array.Length - n;
             _array = new int[newLength];
             for (int i = 0; i < _array.Length; i++)
@@ -149,7 +149,7 @@ namespace Lists
 
         public void AddAt(int idx, ArrayList list)
         {
-            TestErrorId(idx);
+            ThrowErrorIfIdxWrong(idx);
 
             int[] insertArray = list.ToArray();
             int[] originArray = ToArray();
@@ -176,7 +176,7 @@ namespace Lists
 
         public void AddAt(int idx, int val)
         {
-            TestErrorId(idx);
+            ThrowErrorIfIdxWrong(idx);
 
             for (int i = RealLength; i > idx; i--)
             {
@@ -190,14 +190,14 @@ namespace Lists
         }
         public void Set(int idx, int val)
         {
-            TestErrorId(idx);
+            ThrowErrorIfIdxWrong(idx);
 
             _array[idx] = val;
         }
 
         public void RemoveFirst()
         {
-            TestIfEmptyArray();
+            ThrowErrorIfArrayEmpty();
 
             int[] tempAr = new int[RealLength - 1];
 
@@ -226,7 +226,7 @@ namespace Lists
             }
         }
 
-        public void TestErrorId(int idx)
+        public void ThrowErrorIfIdxWrong(int idx)
         {
             if (idx > _array.Length)
             {
@@ -235,7 +235,7 @@ namespace Lists
 
         }
 
-        public void TestIfEmptyArray()
+        public void ThrowErrorIfArrayEmpty()
         {
             if ((RealLength - 1) < 0)
             {
@@ -252,8 +252,8 @@ namespace Lists
 
         public void RemoveAt(int idx)
         {
-            TestErrorId(idx);
-            TestIfEmptyArray();
+            ThrowErrorIfIdxWrong(idx);
+            ThrowErrorIfArrayEmpty();
 
             int[] tempAr = new int[RealLength - 1];
 

@@ -109,7 +109,7 @@ namespace Lists
 
         public void AddAt(int idx, int val)
         {
-            TestErrorId(idx);
+            ThrowErrorIfIdxWrong(idx);
             Node current = FindIdx(idx - 1);
 
 
@@ -163,7 +163,7 @@ namespace Lists
 
         public void RemoveFirst()
         {
-            TestErrorToEmptyArray();
+            ThrowErrorIfArrayEmpty();
             if (_head.Next == null)
             {
                 _head = null;
@@ -258,7 +258,7 @@ namespace Lists
         public void RemoveAtMultiple(int idx, int n)
         {
             int testLength = idx + n;
-            TestErrorId(testLength);
+            ThrowErrorIfIdxWrong(testLength);
 
             Node current = FindIdx(idx - 1);
 
@@ -406,7 +406,7 @@ namespace Lists
         public int Get(int idx)
         {
             int value = 0;
-            TestErrorId(idx);
+            ThrowErrorIfIdxWrong(idx);
 
             Node current = _head;
 
@@ -621,7 +621,7 @@ namespace Lists
 
         public Node FindIdx(int idx)
         {
-            TestErrorId(idx);
+            ThrowErrorIfIdxWrong(idx);
             Node current = _head;
 
             for (int i = 0; i < idx; i++)
@@ -633,7 +633,7 @@ namespace Lists
             return current;
         }
 
-        public void TestErrorId(int idx)
+        public void ThrowErrorIfIdxWrong(int idx)
         {
             if (idx > GetLength())
             {
@@ -641,7 +641,7 @@ namespace Lists
             }
         }
 
-        public void TestErrorToEmptyArray()
+        public void ThrowErrorIfArrayEmpty()
         {
             if ((GetLength() - 1) <= 0)
             {
